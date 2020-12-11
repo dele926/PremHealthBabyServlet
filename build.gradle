@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'war' //to create a webapp jar file, ie a 'war' file
+    id 'org.gretty' version '3.0.3'
+    /*jetty webserver, it's an archive for
+    all types of jar files, servlets, classes, xmls etc
+     */
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter() //gretty is in jcenter
+}
+
+war{
+    //all of the library jar files used are to be zipped into the war file
+    //war is an archive for jar files
+    from {
+        configurations.runtimeClasspath.collect {
+        it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
+
+dependencies {
+    //to include the servlet libraries
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
