@@ -19,6 +19,5 @@ public class MyServlet extends HttpServlet{
         resp.setContentType("application/json");
         //Why does this response show up on my server?
         resp.getWriter().write("Hello, world!");
-        resp.getWriter().write(req.getServletPath());
     }
 }
