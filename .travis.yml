@@ -3,7 +3,6 @@ before_install:
   - chmod +x gradlew
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
-  - psql -c "CREATE USER postgres WITH PASSWORD "690922@Yd";" -U postgres
 script:
   - ./gradlew build --info
 before_cache:
@@ -13,9 +12,15 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+services:
+  - postgresql
+env:
+  global:
+    - PGUSER=postgres
+    - PGPORT=5432
+    - PGPASSWORD=690922@Yd
 deploy:
   provider: heroku
   api_key: 0732c0b2-dd50-4c92-9737-36dbef731950
   app: premhealthbabyservlet
-services:
-    - postgresql
+
