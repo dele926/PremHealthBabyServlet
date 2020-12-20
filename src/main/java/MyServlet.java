@@ -36,7 +36,7 @@ public class MyServlet extends HttpServlet{
         }
         Connection conn= null;
         try {
-            conn = DriverManager.getConnection(dbUrl);
+            conn = DriverManager.getConnection(dbUrl, "sycqsrtspaehfa", "dc02d39d3fcb5602eb6c4cef062954511ebc2641c7d85ca4a1b8b88fe563f116");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
