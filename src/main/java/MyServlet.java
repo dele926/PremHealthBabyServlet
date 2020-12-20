@@ -28,15 +28,15 @@ public class MyServlet extends HttpServlet{
         /*
         Here's the SQL Query Part
          */
-        String dbUrl ="jdbc:postgresql://ec2-34-194-198-238.compute-1.amazonaws.com:5432/d5o0sajebkt8h3";
+        String dbUrl = System.getenv("JDBC_DATABASE_URL");
         try {
             // Registers the driver
             Class.forName("org.postgresql.Driver");
         } catch (Exception e) {
         }
-        Connection conn= null;
+        Connection conn = null;
         try {
-            conn = DriverManager.getConnection(dbUrl, "sycqsrtspaehfa", "dc02d39d3fcb5602eb6c4cef062954511ebc2641c7d85ca4a1b8b88fe563f116");
+            conn= DriverManager.getConnection(dbUrl);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
