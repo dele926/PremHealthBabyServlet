@@ -28,7 +28,7 @@ public class MyServlet extends HttpServlet{
         /*
         Here's the SQL Query Part
          */
-        String dbUrl = System.getenv("jdbc:postgresql://ec2-34-194-198-238.compute-1.amazonaws.com:5432/d5o0sajebkt8h3");
+        String dbUrl ="jdbc:postgresql://ec2-34-194-198-238.compute-1.amazonaws.com:5432/d5o0sajebkt8h3";
         try {
             // Registers the driver
             Class.forName("org.postgresql.Driver");
