@@ -28,7 +28,7 @@ public class MyServlet extends HttpServlet{
         /*
         Here's the SQL Query Part
          */
-        String dbUrl = System.getenv("JDBC_DATABASE_URL");
+        String dbUrl = "jdbc:postgresql://localhost:5432/postgres";
         try {
             // Registers the driver
             Class.forName("org.postgresql.Driver");
@@ -36,7 +36,7 @@ public class MyServlet extends HttpServlet{
         }
         Connection conn= null;
         try {
-            conn= DriverManager.getConnection(dbUrl);
+            conn = DriverManager.getConnection(dbUrl, "postgres", "690922@Yd");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -58,4 +58,15 @@ public class MyServlet extends HttpServlet{
         }
 
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    {
+        resp.setContentType("text/html"); //setting type of response
+        resp.getWriter().write("This Servlet is working!"); //writing hello world to response
+        resp.getWriter().write("<title>Servlet for Premature Baby Health Monitoring</title>");
+        System.out.print(req.getServletPath());
+    }
+
+
 }
