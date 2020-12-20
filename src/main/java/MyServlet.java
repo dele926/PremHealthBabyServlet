@@ -55,6 +55,7 @@ public class MyServlet extends HttpServlet{
             conn.close();
         }
         catch (Exception e){
+            System.out.println(e);
         }
 
     }
