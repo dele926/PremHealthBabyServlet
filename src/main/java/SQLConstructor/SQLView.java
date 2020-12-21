@@ -1,4 +1,4 @@
-package SQL;
+package SQLConstructor;
 
 public class SQLView {
 }

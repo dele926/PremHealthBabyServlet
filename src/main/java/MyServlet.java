@@ -43,13 +43,13 @@ public class MyServlet extends HttpServlet{
         try {
             Statement s=conn.createStatement();
             Gson gson = new Gson();
-//            Query query = gson.fromJson(reqBody,Query.class);
-//            String sqlStr = "SELECT " + query.dataRequested + ", time FROM " + "patient_"+ query.patientID + ";";
-//            System.out.println(sqlStr);
-//            ResultSet rset=s.executeQuery(sqlStr);
-//            while(rset.next()){
-//                resp.getWriter().write(rset.getDouble("glucose")+" "+ rset.getTime("time") + "\n");
-//            }
+            Query query = gson.fromJson(reqBody,Query.class);
+            String sqlStr = "SELECT " + query.dataRequested + ", time FROM " + "patient_"+ query.patientID + ";";
+            System.out.println(sqlStr);
+            ResultSet rset=s.executeQuery(sqlStr);
+            while(rset.next()){
+                resp.getWriter().write(rset.getDouble("glucose")+" "+ rset.getTime("time") + "\n");
+            }
             Query returnquery = new Query("2342", "glucose");
             String jsonString = gson.toJson(returnquery);
             resp.getWriter().write(jsonString);
