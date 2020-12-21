@@ -1,5 +1,4 @@
 import com.google.gson.Gson;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -75,6 +74,7 @@ public class MyServlet extends HttpServlet{
         String jsonString = gson.toJson(returnquery);
         resp.getWriter().write(jsonString);
         System.out.print(jsonString);
+        String dbUrl = System.getenv("JDBC_DATABASE_URL");
     }
 
 
