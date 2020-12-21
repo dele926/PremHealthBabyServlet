@@ -67,10 +67,14 @@ public class MyServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
-        resp.setContentType("text/html"); //setting type of response
-        resp.getWriter().write("This Servlet is working!"); //writing hello world to response
-        resp.getWriter().write("<title>Servlet for Premature Baby Health Monitoring</title>");
-        System.out.print(req.getServletPath());
+        resp.setContentType("application/json"); //setting type of response
+//        resp.getWriter().write("This Servlet is working!"); //writing hello world to response
+//        resp.getWriter().write("<title>Servlet for Premature Baby Health Monitoring</title>");
+        Gson gson = new Gson();
+        Query returnquery = new Query("2342", "glucose");
+        String jsonString = gson.toJson(returnquery);
+        resp.getWriter().write(jsonString);
+        System.out.print(jsonString);
     }
 
 
