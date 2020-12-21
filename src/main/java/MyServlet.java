@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.stream.Collectors;
 
@@ -43,14 +44,17 @@ public class MyServlet extends HttpServlet{
         try {
             Statement s=conn.createStatement();
             Gson gson = new Gson();
-            Query query = gson.fromJson(reqBody,Query.class);
-            String sqlStr = "SELECT " + query.dataRequested + ", time FROM " + "patient_"+ query.patientID + ";";
-            System.out.println(sqlStr);
-            ResultSet rset=s.executeQuery(sqlStr);
-            while(rset.next()){
-                resp.getWriter().write(rset.getDouble("glucose")+" "+ rset.getTime("time") + "\n");
-            }
-            rset.close();
+//            Query query = gson.fromJson(reqBody,Query.class);
+//            String sqlStr = "SELECT " + query.dataRequested + ", time FROM " + "patient_"+ query.patientID + ";";
+//            System.out.println(sqlStr);
+//            ResultSet rset=s.executeQuery(sqlStr);
+//            while(rset.next()){
+//                resp.getWriter().write(rset.getDouble("glucose")+" "+ rset.getTime("time") + "\n");
+//            }
+            Query returnquery = new Query("2342", "glucose");
+            String jsonString = gson.toJson(returnquery);
+            resp.getWriter().write(jsonString);
+            //rset.close();
             s.close();
             conn.close();
         }
