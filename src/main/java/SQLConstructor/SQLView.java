@@ -8,7 +8,7 @@ public class SQLView {
         this.patientID = patientID;
     }
 
-    public String GetSQL(){
+    public String getSQL(){
         String sqlStr;
         sqlStr = "SELECT *" + " FROM " + "patient_"+ patientID + ";";
         return sqlStr;

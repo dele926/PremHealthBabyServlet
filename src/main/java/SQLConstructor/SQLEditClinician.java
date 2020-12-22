@@ -20,7 +20,7 @@ public class SQLEditClinician extends SQLEdit{
         this.time = time;
     }
 
-    public String GetSQL(){
+    public String getSQL(){
         String sqlStr;
         sqlStr = "UPDATE " + "patient_" + patientID + "SET glucose_manual = " + glucose_manual + ", potassium_manual = " +
                 potassium_manual + ", sodium_manual = " + sodium_manual + ", lactate_manual = " + lactate_manual +

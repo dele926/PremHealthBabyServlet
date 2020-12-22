@@ -10,7 +10,7 @@ public class SQLEditEngineer extends SQLEdit{
         this.newfilter = newfilter;
     }
 
-    public String GetSQL(){
+    public String getSQL(){
         String sqlStr;
         sqlStr = "UPDATE " + "patient_" + patientID + "SET filter_type = " + newfilter +
                 "WHERE patient_id = " + patientID + ";";
