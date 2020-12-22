@@ -24,7 +24,7 @@ public class SQLEditClinician extends SQLEdit{
         String sqlStr;
         sqlStr = "UPDATE " + "patient_" + patientID + "SET glucose_manual = " + glucose_manual + ", potassium_manual = " +
                 potassium_manual + ", sodium_manual = " + sodium_manual + ", lactate_manual = " + lactate_manual +
-                " WHERE time = " + time + ",";
+                " WHERE time = " + time + ";";
         return sqlStr;
     }
 
