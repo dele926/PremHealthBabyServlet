@@ -12,8 +12,8 @@ public class SQLEditEngineer extends SQLEdit{
 
     public String getSQL(){
         String sqlStr;
-        sqlStr = "UPDATE " + "patient_" + patientID + "SET filter_type = " + newfilter +
-                "WHERE patient_id = " + patientID + ";";
+        sqlStr = "UPDATE " + "patient_" + patientID + " SET filter_type = " + newfilter +
+                " WHERE patient_id = " + patientID + ";";
         return sqlStr;
     }
 
