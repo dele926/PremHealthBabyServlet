@@ -1,3 +1,4 @@
+import ReturnObjects.Group;
 import ReturnObjects.Patient;
 import com.google.gson.Gson;
 import javax.servlet.ServletException;
@@ -51,14 +52,19 @@ public class MyServlet extends HttpServlet{
             System.out.println(sqlStr);
             ResultSet rset=s.executeQuery(sqlStr);
             // if patient
-            Patient patient = new Patient (rset);
+            //Patient patient = new Patient (rset);
+            //List results = new ArrayList();
+            //results = patient.resultSetToList(rset);
+            //String jsonString = gson.toJson(results); // RETURN THIS
+            //resp.getWriter().write(jsonString);
+            //rset.close(); // should close rset to give garbage collector to recollect memory
+            // if engineer
+            Group group = new Group (rset);
             List results = new ArrayList();
-            results = patient.resultSetToList(rset);
+            results = group.resultSetToList(rset);
             String jsonString = gson.toJson(results); // RETURN THIS
             resp.getWriter().write(jsonString);
             rset.close(); // should close rset to give garbage collector to recollect memory
-            // if engineer
-
             s.close();
             conn.close();
         }
