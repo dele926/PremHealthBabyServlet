@@ -1,4 +1,3 @@
-import ReturnObjects.Group;
 import ReturnObjects.Patient;
 import com.google.gson.Gson;
 import javax.servlet.ServletException;
@@ -27,7 +26,6 @@ public class MyServlet extends HttpServlet{
         //the response sent back by the server will be a JSON
         //resp.setContentType("text/html");
         resp.setContentType("application/json");
-        resp.getWriter().write("Thank you Client!");
         resp.getWriter().write(reqBody);
         /*
         Here's the SQL Query Part
@@ -52,19 +50,13 @@ public class MyServlet extends HttpServlet{
             System.out.println(sqlStr);
             ResultSet rset=s.executeQuery(sqlStr);
             // if patient
-            //Patient patient = new Patient (rset);
-            //List results = new ArrayList();
-            //results = patient.resultSetToList(rset);
-            //String jsonString = gson.toJson(results); // RETURN THIS
-            //resp.getWriter().write(jsonString);
-            //rset.close(); // should close rset to give garbage collector to recollect memory
-            // if engineer
-            Group group = new Group (rset);
+            Patient patient = new Patient (rset);
             List results = new ArrayList();
-            results = group.resultSetToList(rset);
+            results = patient.resultSetToList(rset);
             String jsonString = gson.toJson(results); // RETURN THIS
             resp.getWriter().write(jsonString);
             rset.close(); // should close rset to give garbage collector to recollect memory
+            // if engineer
             s.close();
             conn.close();
         }
