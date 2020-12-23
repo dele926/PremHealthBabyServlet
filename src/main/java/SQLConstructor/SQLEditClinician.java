@@ -1,4 +1,5 @@
 package SQLConstructor;
+
 import java.sql.Time;
 
 public class SQLEditClinician extends SQLEdit{

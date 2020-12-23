@@ -16,7 +16,13 @@ public class TestSQLViewAll {
     @Test
     public void testEngineerView() {
         String sql = SQLViewEngineer.getSQL();
-        Assert.assertEquals(sql, "SELECT");
+        Assert.assertEquals(sql, "SELECT time, patient_id, sodium, potassium, lactate, glucose, " +
+                "potassium_input, sodium_input, lactate_input, glucose_input FROM patient_2342 WHERE NOT " +
+                "potassium_input is NULL UNION ALL SELECT time, patient_id, sodium, potassium, lactate, " +
+                "glucose, potassium_input, sodium_input, lactate_input, glucose_input FROM patient_2343 " +
+                "WHERE NOT potassium_input is NULL UNION ALL SELECT time, patient_id, sodium, potassium, " +
+                "lactate, glucose, potassium_input, sodium_input, lactate_input, glucose_input FROM patient_2344 " +
+                "WHERE NOT potassium_input is NULL");
 
     }
 }
