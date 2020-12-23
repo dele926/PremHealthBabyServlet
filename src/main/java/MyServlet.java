@@ -1,4 +1,3 @@
-import SQLConstructor.*;
 import com.google.gson.Gson;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +11,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 //This declares this program to be a servlet
@@ -43,6 +44,15 @@ public class MyServlet extends HttpServlet{
         try {
             Statement s=conn.createStatement();
             Gson gson = new Gson();
+            Query query = gson.fromJson(reqBody,Query.class);
+            String sqlStr = "SELECT " + query.dataRequested + ", time FROM " + "patient_"+ query.patientID + ";";
+            System.out.println(sqlStr);
+            ResultSet rset=s.executeQuery(sqlStr);
+            // if patient
+            Patient patient = new Patient (rset);
+            List results = new ArrayList();
+            results = patient.resultSetToList(rset);
+            String jsonString = gson.toJson(results); // RETURN THIS
             SQLQuery initQuery = gson.fromJson(reqBody,SQLQuery.class);
             if (initQuery.getType() == "EditClinician") {
                 SQLEditClinician query = gson.fromJson(reqBody,SQLEditClinician.class);
