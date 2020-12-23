@@ -1,6 +1,11 @@
 package SQLConstructor;
 
-public class SQLViewEngineer {
+public class SQLViewEngineer extends SQLEdit{
+
+    public SQLViewEngineer(){
+        super("2342,2343,2344");
+        type = "ViewEngineer";
+    }
 
     public static String getSQL(){
         String sqlStr = "";

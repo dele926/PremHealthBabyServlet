@@ -7,6 +7,7 @@ public class SQLEditEngineer extends SQLEdit{
     //constructor
     public SQLEditEngineer (String patientID, String newfilter){
         super(patientID);
+        type = "EditEngineer";
         this.newfilter = newfilter;
     }
 

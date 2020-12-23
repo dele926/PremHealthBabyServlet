@@ -1,6 +1,4 @@
 package SQLConstructor;
-
-
 import java.sql.Time;
 
 /**
@@ -17,6 +15,7 @@ public class SQLEditPhysician extends SQLEditClinician{
                             Time time, String event_type, String prescription){
         super(patientID, comment, glucose_manual, lactate_manual, sodium_manual, potassium_manual, event_type, time);
         this.prescription = prescription;
+        type = "EditPhysician";
     }
 
     @Override

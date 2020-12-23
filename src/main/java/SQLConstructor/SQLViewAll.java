@@ -1,11 +1,13 @@
 package SQLConstructor;
 
-public class SQLViewAll {
+public class SQLViewAll extends SQLQuery{
         //fields
         String patientID;
 
         public SQLViewAll(String patientID){
+            super();
             this.patientID = patientID;
+            type = "ViewAll";
         }
 
         public String getSQL(){

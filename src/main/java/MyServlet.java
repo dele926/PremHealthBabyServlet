@@ -1,3 +1,4 @@
+import SQLConstructor.*;
 import com.google.gson.Gson;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +24,6 @@ public class MyServlet extends HttpServlet{
         //the response sent back by the server will be a JSON
         //resp.setContentType("text/html");
         resp.setContentType("application/json");
-        resp.getWriter().write("Thank you Client!");
         resp.getWriter().write(reqBody);
         /*
         Here's the SQL Query Part
@@ -43,13 +43,24 @@ public class MyServlet extends HttpServlet{
         try {
             Statement s=conn.createStatement();
             Gson gson = new Gson();
-            Query query = gson.fromJson(reqBody,Query.class);
-            String sqlStr = "SELECT " + query.dataRequested + ", time FROM " + "patient_"+ query.patientID + ";";
-            System.out.println(sqlStr);
-            ResultSet rset=s.executeQuery(sqlStr);
-            while(rset.next()){
-                resp.getWriter().write(rset.getDouble("glucose")+" "+ rset.getTime("time") + "\n");
+            SQLQuery initQuery = gson.fromJson(reqBody,SQLQuery.class);
+            if (initQuery.getType() == "EditClinician") {
+                SQLEditClinician query = gson.fromJson(reqBody,SQLEditClinician.class);
             }
+            else if (initQuery.getType() == "EditEngineer") {
+                SQLEditEngineer query = gson.fromJson(reqBody, SQLEditEngineer.class);
+            }
+            else if (initQuery.getType() == "EditPhysician") {
+                SQLEditPhysician query = gson.fromJson(reqBody, SQLEditPhysician.class);
+            }
+            else if (initQuery.getType() == "EditClinician") {
+                SQLEditClinician query = gson.fromJson(reqBody, SQLEditClinician.class);
+            }
+            else if (initQuery.getType() == "ViewAll") {
+                SQLViewAll query = gson.fromJson(reqBody, SQLViewAll.class);
+            }
+            System.out.println(query.getSQL());
+            ResultSet rset=s.executeQuery(query.getSQL());
             Query returnquery = new Query("2342", "glucose");
             String jsonString = gson.toJson(returnquery);
             resp.getWriter().write(jsonString);
