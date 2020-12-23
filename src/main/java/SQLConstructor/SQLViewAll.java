@@ -1,10 +1,10 @@
 package SQLConstructor;
 
-public class SQLView {
+public class SQLViewAll {
         //fields
         String patientID;
 
-        public SQLView(String patientID){
+        public SQLViewAll(String patientID){
             this.patientID = patientID;
         }
 
@@ -13,7 +13,6 @@ public class SQLView {
             sqlStr = "SELECT *" + " FROM " + "patient_"+ patientID + ";";
             return sqlStr;
         }
-
         public String getPatientID(){
             return patientID;
         }
