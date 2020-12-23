@@ -26,7 +26,6 @@ public class MyServlet extends HttpServlet{
         //the response sent back by the server will be a JSON
         //resp.setContentType("text/html");
         resp.setContentType("application/json");
-        resp.getWriter().write("Thank you Client!");
         resp.getWriter().write(reqBody);
         /*
         Here's the SQL Query Part
@@ -58,7 +57,6 @@ public class MyServlet extends HttpServlet{
             resp.getWriter().write(jsonString);
             rset.close(); // should close rset to give garbage collector to recollect memory
             // if engineer
-
             s.close();
             conn.close();
         }
