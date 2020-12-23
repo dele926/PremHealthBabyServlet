@@ -1,9 +1,6 @@
 package SQLConstructor;
 
 public class SQLView {
-    package SQLConstructor;
-
-    public class SQLView {
         //fields
         String patientID;
 
@@ -20,6 +17,5 @@ public class SQLView {
         public String getPatientID(){
             return patientID;
         }
-    }
 
 }
