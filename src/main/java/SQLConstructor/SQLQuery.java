@@ -7,5 +7,7 @@ public abstract class SQLQuery {
         this.type = type;
     }
 
-    public
+    public String getType() {
+        return type;
+    }
 }
