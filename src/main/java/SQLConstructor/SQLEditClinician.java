@@ -2,7 +2,7 @@ package SQLConstructor;
 
 import java.sql.Time;
 
-public class SQLEditClinician extends SQLEdit{
+public class SQLEditClinician extends SQLEdit implements Getable{
     protected String comment;
     protected double glucose_manual;
     protected double lactate_manual;
@@ -24,6 +24,7 @@ public class SQLEditClinician extends SQLEdit{
         this.time = time;
     }
 
+    @Override
     public String getSQL(){
         String sqlStr;
         sqlStr = "UPDATE " + "patient_" + patientID + "SET glucose_manual = " + glucose_manual + ", potassium_manual = " +

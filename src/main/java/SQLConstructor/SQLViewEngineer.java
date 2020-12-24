@@ -1,13 +1,14 @@
 package SQLConstructor;
 
-public class SQLViewEngineer extends SQLEdit{
+public class SQLViewEngineer extends SQLEdit implements Getable{
 
     public SQLViewEngineer(){
         super("2342,2343,2344");
         type = "ViewEngineer";
     }
 
-    public static String getSQL(){
+    @Override
+    public String getSQL(){
         String sqlStr = "";
         for (int ID = 2342; ID <= 2344; ID++) {
             sqlStr = (sqlStr + "SELECT time, patient_id, sodium, potassium, lactate, glucose, potassium_input, sodium_input, " +

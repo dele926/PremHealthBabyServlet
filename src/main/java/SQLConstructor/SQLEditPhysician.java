@@ -5,7 +5,7 @@ import java.sql.Time;
  * physicians can update the prescription whereas clinicians can't
  */
 
-public class SQLEditPhysician extends SQLEditClinician{
+public class SQLEditPhysician extends SQLEditClinician implements Getable{
     //additional field
     private String prescription;
 

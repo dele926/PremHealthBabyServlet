@@ -1,6 +1,6 @@
 package SQLConstructor;
 
-public class SQLViewAll extends SQLQuery{
+public class SQLViewAll extends SQLQuery implements Getable{
         //fields
         String patientID;
 
@@ -10,6 +10,7 @@ public class SQLViewAll extends SQLQuery{
             type = "ViewAll";
         }
 
+        @Override
         public String getSQL(){
             String sqlStr;
             sqlStr = "SELECT *" + " FROM " + "patient_"+ patientID + ";";

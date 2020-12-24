@@ -1,6 +1,6 @@
 package SQLConstructor;
 
-public class SQLViewClinician {
+public class SQLViewClinician implements Getable{
     //fields
     String patientID;
     String type = "View";
@@ -10,6 +10,7 @@ public class SQLViewClinician {
         this.patientID = patientID;
     }
 
+    @Override
     public String getSQL(){
         String sqlStr;
         sqlStr = "SELECT *" + " FROM " + "patient_"+ patientID + ";";

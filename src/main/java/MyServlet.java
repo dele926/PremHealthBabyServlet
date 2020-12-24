@@ -46,29 +46,27 @@ public class MyServlet extends HttpServlet{
         try {
             Statement s=conn.createStatement();
             Gson gson = new Gson();
-            SQLQuery initQuery = gson.fromJson(reqBody, SQLQuery.class);
-            if (initQuery.getType() == "EditClinician") {
-                SQLEditClinician query = gson.fromJson(reqBody,SQLEditClinician.class);
+            SQLQuery initquery = gson.fromJson(reqBody, SQLQuery.class);
+            //I want to get different SQls based on the type of request it is
+            //Can I convert the object ot a superclass into a subclass?
+            if (initquery.getType() == "EditClinician") {
+                initquery = gson.fromJson(reqBody,SQLEditClinician.class);
             }
-            else if (initQuery.getType() == "EditEngineer") {
+            else if (initquery.getType() == "EditEngineer") {
                 SQLEditEngineer query = gson.fromJson(reqBody, SQLEditEngineer.class);
             }
-            else if (initQuery.getType() == "EditPhysician") {
+            else if (initquery.getType() == "EditPhysician") {
                 SQLEditPhysician query = gson.fromJson(reqBody, SQLEditPhysician.class);
             }
-            else if (initQuery.getType() == "EditClinician") {
+            else if (initquery.getType() == "EditClinician") {
                 SQLEditClinician query = gson.fromJson(reqBody, SQLEditClinician.class);
             }
-            else if (initQuery.getType() == "ViewAll") {
+            else if (initquery.getType() == "ViewAll") {
                 SQLViewAll query = gson.fromJson(reqBody, SQLViewAll.class);
             }
-            try{
-                sqlStr = query.getSQL();
-                System.out.println(sqlStr);
-                ResultSet rset=s.executeQuery(sqlStr);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            String sqlStr = query.getSQL();
+            System.out.println(sqlStr);
+            ResultSet rset=s.executeQuery(sqlStr);
             // if patient
             Patient patient = new Patient (rset);
             List results = new ArrayList();
@@ -84,7 +82,6 @@ public class MyServlet extends HttpServlet{
         catch (Exception e){
             System.out.println(e);
         }
-
     }
 
     @Override
