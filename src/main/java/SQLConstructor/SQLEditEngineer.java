@@ -1,6 +1,10 @@
 package SQLConstructor;
 
-public class SQLEditEngineer extends SQLEdit implements Getable{
+/**
+ * The Engineer can update the filter method for one particular patient
+ */
+
+public class SQLEditEngineer extends SQLEdit {
     //extra fields
     String newfilter;
 

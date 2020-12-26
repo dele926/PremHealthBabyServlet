@@ -1,6 +1,6 @@
 package SQLConstructor;
 
-public class SQLViewAll extends SQLQuery implements Getable{
+public class SQLViewAll extends SQLQuery {
         //fields
         String patientID;
 

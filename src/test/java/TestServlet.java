@@ -8,6 +8,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.StringWriter;
 
+/**
 public class TestServlet {
     @Mock
     HttpServletRequest request;
@@ -24,3 +25,5 @@ public class TestServlet {
     }
 
 }
+
+ **/

@@ -21,16 +21,13 @@ import java.util.stream.Collectors;
 @WebServlet(urlPatterns = {"/patients"}, displayName = "Baby Health Servlet", loadOnStartup = 1)
 public class MyServlet extends HttpServlet{
     @Override
+    //The DoPost Method edits the database and sends an updated information back to client
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
             IOException {
+        //Setup
         String reqBody=req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-        //the response sent back by the server will be a JSON
-        //resp.setContentType("text/html");
         resp.setContentType("application/json");
         resp.getWriter().write(reqBody);
-        /*
-        Here's the SQL Query Part
-         */
         String dbUrl = System.getenv("JDBC_DATABASE_URL");
         try {
             // Registers the driver
@@ -43,37 +40,60 @@ public class MyServlet extends HttpServlet{
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+        //Carrying out SQL
         try {
             Statement s=conn.createStatement();
             Gson gson = new Gson();
+            //Takes in Initial Query in the superclass InitQuery. This is used to identify
+            //which type of command the client is sending to us
             SQLQuery initquery = gson.fromJson(reqBody, SQLQuery.class);
-            //I want to get different SQls based on the type of request it is
-            //Can I convert the object ot a superclass into a subclass?
+            String sqlStr = "Invalid Command";
+            ResultSet rset = null;
             if (initquery.getType() == "EditClinician") {
-                initquery = gson.fromJson(reqBody,SQLEditClinician.class);
+                //EditClinician returns an object that says "Comment Added!"
+                //and prints out the updated patient
+                //carrying out Edit
+                SQLEditClinician query = gson.fromJson(reqBody,SQLEditClinician.class);
+                sqlStr = query.getSQL();
+                System.out.println(sqlStr);
+                s.executeQuery(sqlStr);
+                //Returning updated patient
+                SQLViewClinician viewClinician = new SQLViewClinician(query.getPatientID());
+                sqlStr = viewClinician.getSQL();
+                rset=s.executeQuery(sqlStr);
             }
             else if (initquery.getType() == "EditEngineer") {
+                //Edits the filter type for a particular patient
+                //then returns the updated patient
+                //Updating
                 SQLEditEngineer query = gson.fromJson(reqBody, SQLEditEngineer.class);
+                sqlStr = query.getSQL();
+                System.out.println(sqlStr);
+                s.executeQuery(sqlStr);
+                //Returning all information for one clinician
+                SQLViewAll viewAll = new SQLViewAll(query.getPatientID());
+                sqlStr = viewAll.getSQL();
+                rset=s.executeQuery(sqlStr);
             }
             else if (initquery.getType() == "EditPhysician") {
+                //EditClinician returns an object that says "Prescription Added!"
+                //and prints out the updated patient
+                //updating
                 SQLEditPhysician query = gson.fromJson(reqBody, SQLEditPhysician.class);
+                sqlStr = query.getSQL();
+                System.out.println(sqlStr);
+                s.executeQuery(sqlStr);
+                //printing updated patient
+                SQLViewClinician viewClinician = new SQLViewClinician(query.getPatientID());
+                sqlStr = viewClinician.getSQL();
+                rset=s.executeQuery(sqlStr);
             }
-            else if (initquery.getType() == "EditClinician") {
-                SQLEditClinician query = gson.fromJson(reqBody, SQLEditClinician.class);
-            }
-            else if (initquery.getType() == "ViewAll") {
-                SQLViewAll query = gson.fromJson(reqBody, SQLViewAll.class);
-            }
-            String sqlStr = query.getSQL();
-            System.out.println(sqlStr);
-            ResultSet rset=s.executeQuery(sqlStr);
-            // if patient
+            // if patient <- patient is used to return a single patient's info
             Patient patient = new Patient (rset);
             List results = new ArrayList();
             results = patient.resultSetToList(rset);
             String jsonString = gson.toJson(results); // RETURN THIS
-            Query returnquery = new Query("2342", "glucose");
-            String jsonString = gson.toJson(returnquery);
             resp.getWriter().write(jsonString);
             //rset.close();
             s.close();
@@ -88,8 +108,6 @@ public class MyServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
         resp.setContentType("application/json"); //setting type of response
-//        resp.getWriter().write("This Servlet is working!"); //writing hello world to response
-//        resp.getWriter().write("<title>Servlet for Premature Baby Health Monitoring</title>");
         Gson gson = new Gson();
         Query returnquery = new Query("2342", "glucose");
         String jsonString = gson.toJson(returnquery);

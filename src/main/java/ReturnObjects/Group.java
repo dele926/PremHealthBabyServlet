@@ -8,6 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The Group Object creates the javascript object to be converted to JSON String
+ * It returns the info obtained across multiple patients
+ * For returning information obtained from ViewEngineer / EditEngineer
+ */
+
 public class Group {
     public Group(ResultSet rset) {
     }

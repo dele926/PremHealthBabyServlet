@@ -6,7 +6,7 @@ import java.sql.Time;
  * This Class Creates a SQLQuery which returns all information
  * for a given clientID
  */
-public abstract class SQLEdit extends SQLQuery implements Getable{
+public abstract class SQLEdit extends SQLQuery {
     //fields
     protected String patientID;
 
@@ -14,7 +14,7 @@ public abstract class SQLEdit extends SQLQuery implements Getable{
         super();
         this.patientID = patientID;
     }
-    protected String getPatientID(){
+    public String getPatientID(){
         return patientID;
     }
 

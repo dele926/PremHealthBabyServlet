@@ -1,9 +1,9 @@
 package SQLConstructor;
 
-public class SQLViewEngineer extends SQLEdit implements Getable{
+public class SQLViewEngineer extends SQLQuery {
 
     public SQLViewEngineer(){
-        super("2342,2343,2344");
+        super();
         type = "ViewEngineer";
     }
 
