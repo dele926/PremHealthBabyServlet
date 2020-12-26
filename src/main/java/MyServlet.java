@@ -107,14 +107,59 @@ public class MyServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
-        resp.setContentType("application/json"); //setting type of response
-        Gson gson = new Gson();
-        Query returnquery = new Query("2342", "glucose");
-        String jsonString = gson.toJson(returnquery);
-        resp.getWriter().write(jsonString);
-        System.out.print(jsonString);
+        //Setup
+        String reqBody=req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        resp.setContentType("application/json");
+        resp.getWriter().write(reqBody);
         String dbUrl = System.getenv("JDBC_DATABASE_URL");
-    }
+        try {
+            // Registers the driver
+            Class.forName("org.postgresql.Driver");
+        } catch (Exception e) {
+        }
+        Connection conn = null;
+        try {
+            conn= DriverManager.getConnection(dbUrl);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
+        //Carrying out SQL
+        try {
+            Statement s = conn.createStatement();
+            Gson gson = new Gson();
+            //Takes in Initial Query in the superclass InitQuery. This is used to identify
+            //which type of command the client is sending to us
+            SQLQuery initquery = gson.fromJson(reqBody, SQLQuery.class);
+            String sqlStr = "Invalid Command";
+            ResultSet rset = null;
+
+            if (initquery.getType() == "ViewClinician")
+            {
+                SQLViewClinician query = gson.fromJson(reqBody,SQLViewClinician.class);
+                sqlStr = query.getSQL();
+                try {
+                    rset=s.executeQuery(sqlStr);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+
+            else if (initquery.getType() == "ViewEngineer")
+            {
+                SQLViewEngineer query = gson.fromJson(reqBody,SQLViewEngineer.class);
+                sqlStr = query.getSQL();
+                try {
+                    rset=s.executeQuery(sqlStr);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+
+    }
 
 }
