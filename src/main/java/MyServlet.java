@@ -155,6 +155,15 @@ public class MyServlet extends HttpServlet{
                     throwables.printStackTrace();
                 }
             }
+
+            Group group = new Group (rset);
+            List results = new ArrayList();
+            results = group.resultSetToList(rset);
+            String jsonString = gson.toJson(results); // RETURN THIS
+            resp.getWriter().write(jsonString);
+            //rset.close();
+            s.close();
+            conn.close();
         }
         catch (Exception e){
             System.out.println(e);
