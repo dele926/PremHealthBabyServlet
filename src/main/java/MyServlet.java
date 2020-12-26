@@ -89,7 +89,7 @@ public class MyServlet extends HttpServlet{
                 sqlStr = viewClinician.getSQL();
                 rset=s.executeQuery(sqlStr);
             }
-            // if patient <- patient is used to return a single patient's info
+            //All returned info for doPost is of the returnObject "Patient" class
             Patient patient = new Patient (rset);
             List results = new ArrayList();
             results = patient.resultSetToList(rset);
