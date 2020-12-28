@@ -28,7 +28,7 @@ public class MyServlet extends HttpServlet{
         String reqBody=req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         resp.setContentType("application/json");
         resp.getWriter().write(reqBody);
-        String dbUrl = System.getenv("JDBC_DATABASE_URL");
+        String dbUrl = "jdbc:postgresql://ec2-34-194-198-238.compute-1.amazonaws.com:5432/d5o0sajebkt8h3";
         try {
             // Registers the driver
             Class.forName("org.postgresql.Driver");
@@ -36,7 +36,7 @@ public class MyServlet extends HttpServlet{
         }
         Connection conn = null;
         try {
-            conn= DriverManager.getConnection(dbUrl);
+            conn= DriverManager.getConnection(dbUrl, "sycqsrtspaehfa", "dc02d39d3fcb5602eb6c4cef062954511ebc2641c7d85ca4a1b8b88fe563f116");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -50,45 +50,48 @@ public class MyServlet extends HttpServlet{
             SQLQuery initquery = gson.fromJson(reqBody, SQLQuery.class);
             String sqlStr = "Invalid Command";
             ResultSet rset = null;
-            if (initquery.getType() == "EditClinician") {
+            if (initquery.getType().equals("EditClinician")) {
                 //EditClinician returns an object that says "Comment Added!"
                 //and prints out the updated patient
                 //carrying out Edit
                 SQLEditClinician query = gson.fromJson(reqBody,SQLEditClinician.class);
                 sqlStr = query.getSQL();
-                System.out.println(sqlStr);
-                s.executeQuery(sqlStr);
+                s.executeUpdate(sqlStr);
                 //Returning updated patient
                 SQLViewClinician viewClinician = new SQLViewClinician(query.getPatientID());
                 sqlStr = viewClinician.getSQL();
                 rset=s.executeQuery(sqlStr);
+                System.out.println(rset);
             }
-            else if (initquery.getType() == "EditEngineer") {
+            else if (initquery.getType().equals("EditEngineer")) {
                 //Edits the filter type for a particular patient
                 //then returns the updated patient
                 //Updating
                 SQLEditEngineer query = gson.fromJson(reqBody, SQLEditEngineer.class);
                 sqlStr = query.getSQL();
-                System.out.println(sqlStr);
-                s.executeQuery(sqlStr);
+                System.out.println("The Request is " + sqlStr);
+                s.executeUpdate(sqlStr);
                 //Returning all information for one clinician
                 SQLViewAll viewAll = new SQLViewAll(query.getPatientID());
                 sqlStr = viewAll.getSQL();
+                System.out.println(sqlStr);
                 rset=s.executeQuery(sqlStr);
             }
-            else if (initquery.getType() == "EditPhysician") {
+            else if (initquery.getType().equals("EditPhysician")) {
                 //EditClinician returns an object that says "Prescription Added!"
                 //and prints out the updated patient
                 //updating
                 SQLEditPhysician query = gson.fromJson(reqBody, SQLEditPhysician.class);
                 sqlStr = query.getSQL();
                 System.out.println(sqlStr);
-                s.executeQuery(sqlStr);
+                s.executeUpdate(sqlStr);
                 //printing updated patient
                 SQLViewClinician viewClinician = new SQLViewClinician(query.getPatientID());
                 sqlStr = viewClinician.getSQL();
                 rset=s.executeQuery(sqlStr);
             }
+
+            else System.out.println("Type is" + initquery.getType() + " BUT Request Did Not Work");
             //All returned info for doPost is of the returnObject "Patient" class
             Patient patient = new Patient (rset);
             List results = new ArrayList();
@@ -134,7 +137,7 @@ public class MyServlet extends HttpServlet{
             String sqlStr = "Invalid Command";
             ResultSet rset = null;
 
-            if (initquery.getType() == "ViewClinician")
+            if (initquery.getType().equals("ViewClinician"))
             {
                 SQLViewClinician query = gson.fromJson(reqBody,SQLViewClinician.class);
                 sqlStr = query.getSQL();
@@ -145,7 +148,7 @@ public class MyServlet extends HttpServlet{
                 }
             }
 
-            else if (initquery.getType() == "ViewEngineer")
+            else if (initquery.getType().equals("ViewEngineer"))
             {
                 SQLViewEngineer query = gson.fromJson(reqBody,SQLViewEngineer.class);
                 sqlStr = query.getSQL();
