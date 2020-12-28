@@ -7,7 +7,7 @@ public class SQLViewAll extends SQLQuery {
         public SQLViewAll(String patientID){
             super();
             this.patientID = patientID;
-            type = "ViewAll";
+            _type = "ViewAll";
         }
 
         @Override

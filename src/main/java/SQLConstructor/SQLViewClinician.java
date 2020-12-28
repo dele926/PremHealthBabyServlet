@@ -5,7 +5,7 @@ public class SQLViewClinician extends SQLQuery {
     String patientID;
 
     public SQLViewClinician(String patientID){
-        type = "ViewClinician";
+        _type = "ViewClinician";
         this.patientID = patientID;
     }
 
@@ -22,7 +22,7 @@ public class SQLViewClinician extends SQLQuery {
         return patientID;
     }
 
-    public String getType(){
-        return type;
+    public String get_type(){
+        return _type;
     }
 }
