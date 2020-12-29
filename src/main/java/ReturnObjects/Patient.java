@@ -23,18 +23,19 @@ public class Patient {
     public Patient(ResultSet rset) {
     }
 
-    public List resultSetToList(ResultSet rs) throws SQLException{
+    public Map<String, Object>  resultSetToList(ResultSet rs) throws SQLException{
         ResultSetMetaData md = rs.getMetaData();
         int columns = md.getColumnCount();
-        List<Map<String,Object>> list = new ArrayList<>();
+        ArrayList<String> time = new ArrayList<String>();
+        ArrayList<String> lactate = new ArrayList<String>();
         while (rs.next()){ // resultset maintains cursor and it initally points before first row
-            Map<String,Object> row = new HashMap<>(columns);
-            for (int i=1 ; i<= columns; ++i){
-                // getObject retrives column values from current row - index/ column name
-                row.put(md.getColumnName(i), rs.getObject(i));
-            }
-            list.add(row);
+            time.add(rs.getString("time"));
+            lactate.add(rs.getString("lactate"));
         }
-        return list;
+        Map<String, Object> info = new HashMap<>();
+        info.put("time", time);
+        info.put("lactate",lactate);
+
+        return info;
     }
 }

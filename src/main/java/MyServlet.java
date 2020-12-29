@@ -14,7 +14,9 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 //This declares this program to be a servlet
@@ -91,7 +93,7 @@ public class MyServlet extends HttpServlet{
             }
             //All returned info for doPost is of the returnObject "Patient" class
             Patient patient = new Patient (rset);
-            List results = new ArrayList();
+            Map<String, Object> results = new HashMap<>();
             results = patient.resultSetToList(rset);
             String jsonString = gson.toJson(results); // RETURN THIS
             resp.getWriter().write(jsonString);
