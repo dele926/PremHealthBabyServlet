@@ -5,7 +5,7 @@ import org.junit.Test;
 
 
 public class TestSQLViewAll {
-
+/**
     @Test
     public void testViewConstruction() {
         //SQLViewAll sqlView = new SQLViewAll("2342");
@@ -35,5 +35,5 @@ public class TestSQLViewAll {
                 "WHERE NOT potassium_input is NULL");
 
     }
-
+**/
 }
