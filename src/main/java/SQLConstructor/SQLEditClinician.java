@@ -4,22 +4,22 @@ import java.sql.Time;
 
 public class SQLEditClinician extends SQLEdit {
     protected String comment;
-    protected double glucose_manual;
-    protected double lactate_manual;
-    protected double sodium_manual;
-    protected double potassium_manual;
+    protected double glucose_input;
+    protected double lactate_input;
+    protected double sodium_input;
+    protected double potassium_input;
     protected String event_type;
     protected Time time;
 
-    public SQLEditClinician(String patientID, String comment, double glucose_manual, double lactate_manual,
-                            double sodium_manual, double potassium_manual, String event_type, Time time){
+    public SQLEditClinician(String patientID, String comment, double glucose_input, double lactate_input,
+                            double sodium_input, double potassium_input, String event_type, Time time){
         super(patientID);
         type = "EditClinician";
         this.comment = comment;
-        this.glucose_manual = glucose_manual;
-        this.lactate_manual = lactate_manual;
-        this.sodium_manual = sodium_manual;
-        this.potassium_manual = potassium_manual;
+        this.glucose_input = glucose_input;
+        this.lactate_input = lactate_input;
+        this.sodium_input = sodium_input;
+        this.potassium_input = potassium_input;
         this.event_type = event_type;
         this.time = time;
     }
@@ -27,9 +27,9 @@ public class SQLEditClinician extends SQLEdit {
     @Override
     public String getSQL(){
         String sqlStr;
-        sqlStr = "UPDATE " + "patient_" + patientID + "SET glucose_manual = " + glucose_manual + ", potassium_manual = " +
-                potassium_manual + ", sodium_manual = " + sodium_manual + ", lactate_manual = " + lactate_manual +
-                " event_type = " + event_type + " WHERE time = " + time + ";";
+        sqlStr = "UPDATE " + "patient_" + patientID + " SET glucose_input = " + glucose_input + ", potassium_input = " +
+                potassium_input + ", sodium_input = " + sodium_input + ", lactate_input = " + lactate_input +
+                ", event_type = \'" +  event_type + "\' WHERE time = \'" + time + "\';";
         return sqlStr;
     }
 

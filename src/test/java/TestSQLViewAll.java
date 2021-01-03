@@ -11,13 +11,11 @@ public class TestSQLViewAll {
         //SQLViewAll sqlView = new SQLViewAll("2342");
         //Assert.assertEquals(sqlView.getSQL(), "SELECT * FROM patient_2342;");
         SQLViewClinician original = new SQLViewClinician("2342");
-        Gson requestgson = new Gson();
-        String reqBody = requestgson.toJson(original);
-        SQLQuery query = requestgson.fromJson(reqBody, SQLQuery.class);
-        Assert.assertEquals("ViewAll", query.getType());
-        query = (SQLViewAll) query;
-        //query = (SQLViewAll)requestgson.fromJson(reqBody, SQLViewAll.class);
-        Assert.assertEquals("SELECT * FROM patient_2342;", query.getSQL());
+        Gson gson = new Gson();
+        String reqBody = gson.toJson(original);
+        SQLQuery query = gson.fromJson(reqBody, SQLQuery.class);
+        Assert.assertEquals("ViewClinician", query.getType());
+        //Assert.assertEquals("SELECT * FROM patient_2342;", query.getSQL());
 
     }
 

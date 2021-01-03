@@ -3,10 +3,9 @@ package SQLConstructor;
 public class SQLViewClinician extends SQLQuery {
     //fields
     String patientID;
-    String type = "ViewClinician";
 
     public SQLViewClinician(String patientID){
-
+        type = "ViewClinician";
         this.patientID = patientID;
     }
 

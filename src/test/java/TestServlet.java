@@ -22,8 +22,14 @@ public class TestServlet {
     public void testDoGet() throws IOException, ServletException {
         StringWriter stringWriter = new StringWriter();
 
+
+        String output=stringWriter.getBuffer().toString();
+        Assert.assertThat(output,is(equalTo("OK")));
+
+        //when and thenReturn sets value to return when method specified is called
+
     }
 
 }
 
- **/
+*/
