@@ -4,7 +4,7 @@ public class SQLViewEngineer extends SQLQuery {
 
     public SQLViewEngineer(){
         super();
-        type = "ViewEngineer";
+        _type = "ViewEngineer";
     }
 
     @Override

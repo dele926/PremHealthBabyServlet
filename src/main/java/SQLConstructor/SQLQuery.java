@@ -3,16 +3,16 @@ package SQLConstructor;
 public class SQLQuery {
 
     //fields
-    protected String type;
+    protected String _type;
 
     //constructor, although you would never need to use this?
     public SQLQuery(){
-        type = "None";
+        _type = "None";
     }
 
     //
-    public String getType() {
-        return type;
+    public String get_type() {
+        return _type;
     }
 
     public String getSQL() {

@@ -15,7 +15,7 @@ public class SQLEditPhysician extends SQLEditClinician {
                             Time time, String event_type, String prescription){
         super(patientID, comment, glucose_input, lactate_input, sodium_input, potassium_input, event_type, time);
         this.prescription = prescription;
-        type = "EditPhysician";
+        _type = "EditPhysician";
     }
 
     @Override

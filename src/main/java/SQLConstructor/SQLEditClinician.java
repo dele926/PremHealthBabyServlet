@@ -14,7 +14,7 @@ public class SQLEditClinician extends SQLEdit {
     public SQLEditClinician(String patientID, String comment, double glucose_input, double lactate_input,
                             double sodium_input, double potassium_input, String event_type, Time time){
         super(patientID);
-        type = "EditClinician";
+        _type = "EditClinician";
         this.comment = comment;
         this.glucose_input = glucose_input;
         this.lactate_input = lactate_input;

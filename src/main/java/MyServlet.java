@@ -6,12 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,7 +47,7 @@ public class MyServlet extends HttpServlet{
             SQLQuery initquery = gson.fromJson(reqBody, SQLQuery.class);
             String sqlStr = "Invalid Command";
             ResultSet rset = null;
-            if (initquery.getType().equals("EditClinician")) {
+            if (initquery.get_type().equals("EditClinician")) {
                 //EditClinician returns an object that says "Comment Added!"
                 //and prints out the updated patient
                 //carrying out Edit
@@ -65,7 +60,7 @@ public class MyServlet extends HttpServlet{
                 rset=s.executeQuery(sqlStr);
                 System.out.println(rset);
             }
-            else if (initquery.getType().equals("EditEngineer")) {
+            else if (initquery.get_type().equals("EditEngineer")) {
                 //Edits the filter type for a particular patient
                 //then returns the updated patient
                 //Updating
@@ -79,7 +74,7 @@ public class MyServlet extends HttpServlet{
                 System.out.println(sqlStr);
                 rset=s.executeQuery(sqlStr);
             }
-            else if (initquery.getType().equals("EditPhysician")) {
+            else if (initquery.get_type().equals("EditPhysician")) {
                 //EditClinician returns an object that says "Prescription Added!"
                 //and prints out the updated patient
                 //updating
@@ -93,7 +88,7 @@ public class MyServlet extends HttpServlet{
                 rset=s.executeQuery(sqlStr);
             }
 
-            else System.out.println("Type is" + initquery.getType() + " BUT Request Did Not Work");
+            else System.out.println("Type is" + initquery.get_type() + " BUT Request Did Not Work");
             //All returned info for doPost is of the returnObject "Patient" class
             Patient patient = new Patient (rset);
             Map<String, Object> results = new HashMap<>();
@@ -139,7 +134,7 @@ public class MyServlet extends HttpServlet{
             String sqlStr = "Invalid Command";
             ResultSet rset = null;
 
-            if (initquery.getType().equals("ViewClinician"))
+            if (initquery.get_type().equals("ViewClinician"))
             {
                 SQLViewClinician query = gson.fromJson(reqBody,SQLViewClinician.class);
                 sqlStr = query.getSQL();
@@ -150,7 +145,7 @@ public class MyServlet extends HttpServlet{
                 }
             }
 
-            else if (initquery.getType().equals("ViewEngineer"))
+            else if (initquery.get_type().equals("ViewEngineer"))
             {
                 SQLViewEngineer query = gson.fromJson(reqBody,SQLViewEngineer.class);
                 sqlStr = query.getSQL();
@@ -173,7 +168,6 @@ public class MyServlet extends HttpServlet{
         catch (Exception e){
             System.out.println(e);
         }
-
     }
 
 }

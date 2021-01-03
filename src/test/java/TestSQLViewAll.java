@@ -14,7 +14,7 @@ public class TestSQLViewAll {
         Gson gson = new Gson();
         String reqBody = gson.toJson(original);
         SQLQuery query = gson.fromJson(reqBody, SQLQuery.class);
-        Assert.assertEquals("ViewClinician", query.getType());
+        Assert.assertEquals("ViewClinician", query.get_type());
         //Assert.assertEquals("SELECT * FROM patient_2342;", query.getSQL());
 
     }
