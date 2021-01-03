@@ -166,7 +166,6 @@ public class MyServlet extends HttpServlet{
         catch (Exception e){
             System.out.println(e);
         }
-
     }
 
 }
