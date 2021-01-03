@@ -88,7 +88,7 @@ public class MyServlet extends HttpServlet{
                 rset=s.executeQuery(sqlStr);
             }
 
-            else System.out.println("Type is" + initquery.get_type() + " BUT Request Did Not Work");
+            else System.out.println("Type is " + initquery.get_type() + " BUT Request Did Not Work");
             //All returned info for doPost is of the returnObject "Patient" class
             Patient patient = new Patient (rset);
             Map<String, Object> results = new HashMap<>();
