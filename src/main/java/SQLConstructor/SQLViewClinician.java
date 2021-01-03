@@ -14,7 +14,7 @@ public class SQLViewClinician extends SQLQuery {
         String sqlStr;
         sqlStr = "SELECT patient_id, date, time, potassium, sodium, lactate, " +
                 "glucose, sodium_input, lactate_input, glucose_input, " +
-                "event_type, comments, prescription" + " FROM " + "patient_"+ patientID + ";";
+                "event_type, comments, prescription" + " FROM " + "patients WHERE patient_id = "+ patientID + ";";
         return sqlStr;
     }
 

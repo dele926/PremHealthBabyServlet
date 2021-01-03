@@ -13,7 +13,7 @@ public class SQLViewAll extends SQLQuery {
         @Override
         public String getSQL(){
             String sqlStr;
-            sqlStr = "SELECT *" + " FROM " + "patient_"+ patientID + ";";
+            sqlStr = "SELECT *" + " FROM " + "patients WHERE patient_id = "+ patientID + ";";
             return sqlStr;
         }
         public String getPatientID(){

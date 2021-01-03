@@ -27,9 +27,9 @@ public class SQLEditClinician extends SQLEdit {
     @Override
     public String getSQL(){
         String sqlStr;
-        sqlStr = "UPDATE " + "patient_" + patientID + " SET glucose_input = " + glucose_input + ", potassium_input = " +
+        sqlStr = "UPDATE " + "patients"+ " SET glucose_input = " + glucose_input + ", potassium_input = " +
                 potassium_input + ", sodium_input = " + sodium_input + ", lactate_input = " + lactate_input +
-                ", event_type = \'" +  event_type + "\' WHERE time = \'" + time + "\';";
+                ", event_type = \'" +  event_type + "\' WHERE time = \'" + time + "\' AND patient_id = " + patientID + ";";
         return sqlStr;
     }
 
