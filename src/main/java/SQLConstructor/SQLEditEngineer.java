@@ -6,24 +6,24 @@ package SQLConstructor;
 
 public class SQLEditEngineer extends SQLEdit {
     //extra fields
-    String newfilter;
+    String newFilter;
 
     //constructor
-    public SQLEditEngineer (String patientID, String newfilter){
+    public SQLEditEngineer (int patientID, String newFilter){
         super(patientID);
         _type = "EditEngineer";
-        this.newfilter = newfilter;
+        this.newFilter = newFilter;
     }
 
     @Override
     public String getSQL(){
         String sqlStr;
-        sqlStr = "UPDATE " + "patients" + " SET filter_type = " + newfilter +
+        sqlStr = "UPDATE " + "patients" + " SET filter_type = " + newFilter +
                 " WHERE patient_id = " + patientID + ";";
         return sqlStr;
     }
 
     public String getFilter() {
-        return newfilter;
+        return newFilter;
     }
 }

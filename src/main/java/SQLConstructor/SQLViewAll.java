@@ -2,9 +2,9 @@ package SQLConstructor;
 
 public class SQLViewAll extends SQLQuery {
         //fields
-        String patientID;
+        int patientID;
 
-        public SQLViewAll(String patientID){
+        public SQLViewAll(int patientID){
             super();
             this.patientID = patientID;
             _type = "ViewAll";
@@ -16,7 +16,7 @@ public class SQLViewAll extends SQLQuery {
             sqlStr = "SELECT *" + " FROM " + "patients WHERE patient_id = "+ patientID + ";";
             return sqlStr;
         }
-        public String getPatientID(){
+        public int getPatientID(){
             return patientID;
         }
 

@@ -2,9 +2,9 @@ package SQLConstructor;
 
 public class SQLViewClinician extends SQLQuery {
     //fields
-    String patientID;
+    protected int patientID;
 
-    public SQLViewClinician(String patientID){
+    public SQLViewClinician(int patientID){
         _type = "ViewClinician";
         this.patientID = patientID;
     }
@@ -18,7 +18,7 @@ public class SQLViewClinician extends SQLQuery {
         return sqlStr;
     }
 
-    public String getPatientID(){
+    public int getPatientID(){
         return patientID;
     }
 

@@ -8,13 +8,13 @@ import java.sql.Time;
  */
 public abstract class SQLEdit extends SQLQuery {
     //fields
-    protected String patientID;
+    protected int patientID;
 
-    public SQLEdit(String patientID){
+    public SQLEdit(int patientID){
         super();
         this.patientID = patientID;
     }
-    public String getPatientID(){
+    public int getPatientID(){
         return patientID;
     }
 

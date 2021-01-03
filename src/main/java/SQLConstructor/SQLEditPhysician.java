@@ -10,7 +10,7 @@ public class SQLEditPhysician extends SQLEditClinician {
     private String prescription;
 
     //constructor
-    public SQLEditPhysician(String patientID, String comment, double glucose_input,
+    public SQLEditPhysician(int patientID, String comment, double glucose_input,
                             double lactate_input, double sodium_input, double potassium_input,
                             Time time, String event_type, String prescription){
         super(patientID, comment, glucose_input, lactate_input, sodium_input, potassium_input, event_type, time);
