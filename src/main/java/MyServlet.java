@@ -48,31 +48,15 @@ public class MyServlet extends HttpServlet{
             String sqlStr = "Invalid Command";
             ResultSet rset = null;
             if (initquery.get_type().equals("EditClinician")) {
-                //EditClinician returns an object that says "Comment Added!"
-                //and prints out the updated patient
-                //carrying out Edit
                 SQLEditClinician query = gson.fromJson(reqBody,SQLEditClinician.class);
-                sqlStr = query.getSQL();
-                s.executeUpdate(sqlStr);
-                //Returning updated patient
-                SQLViewClinician viewClinician = new SQLViewClinician(query.getPatientID());
-                sqlStr = viewClinician.getSQL();
-                System.out.println(sqlStr);
-                rset=s.executeQuery(sqlStr);
+                rset=query.execute(s);
             }
             else if (initquery.get_type().equals("EditEngineer")) {
                 //Edits the filter type for a particular patient
                 //then returns the updated patient
                 //Updating
                 SQLEditEngineer query = gson.fromJson(reqBody, SQLEditEngineer.class);
-                sqlStr = query.getSQL();
-                System.out.println("The Request is " + sqlStr);
-                s.executeUpdate(sqlStr);
-                //Returning all information for one clinician
-                SQLViewAll viewAll = new SQLViewAll(query.getPatientID());
-                sqlStr = viewAll.getSQL();
-                System.out.println(sqlStr);
-                rset=s.executeQuery(sqlStr);
+                rset=query.execute(s);
             }
             else if (initquery.get_type().equals("EditPhysician")) {
                 //EditClinician returns an object that says "Prescription Added!"
