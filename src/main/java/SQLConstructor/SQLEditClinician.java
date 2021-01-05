@@ -29,7 +29,7 @@ public class SQLEditClinician extends SQLEdit {
         String sqlStr;
         sqlStr = "UPDATE " + "patients"+ " SET glucose_input = " + glucose_input + ", potassium_input = " +
                 potassium_input + ", sodium_input = " + sodium_input + ", lactate_input = " + lactate_input +
-                ", event_type = \'" +  event_type + "\' WHERE time = \'" + time + "\' AND patient_id = 2342;";
+                ", event_type = \'" +  event_type + "\', comments = \'" + comment + "\' WHERE time = \'" + time + "\' AND patient_id = 2342;";
         return sqlStr;
     }
 
