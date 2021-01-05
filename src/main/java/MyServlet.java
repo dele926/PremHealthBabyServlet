@@ -53,11 +53,11 @@ public class MyServlet extends HttpServlet{
                 //carrying out Edit
                 SQLEditClinician query = gson.fromJson(reqBody,SQLEditClinician.class);
                 sqlStr = query.getSQL();
-                System.out.println(sqlStr);
                 s.executeUpdate(sqlStr);
                 //Returning updated patient
                 SQLViewClinician viewClinician = new SQLViewClinician(query.getPatientID());
                 sqlStr = viewClinician.getSQL();
+                System.out.println(sqlStr);
                 rset=s.executeQuery(sqlStr);
             }
             else if (initquery.get_type().equals("EditEngineer")) {
