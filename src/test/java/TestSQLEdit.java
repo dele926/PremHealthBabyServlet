@@ -1,7 +1,5 @@
-import SQLConstructor.SQLEditClinician;
-import SQLConstructor.SQLEditEngineer;
-import SQLConstructor.SQLEditPhysician;
-import SQLConstructor.SQLViewAll;
+import JSONObjects.SQLEditClinician;
+import JSONObjects.SQLEditPhysician;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package SQLConstructor;
+package JSONObjects;
 
 public class SQLViewClinician extends SQLQuery {
     //fields

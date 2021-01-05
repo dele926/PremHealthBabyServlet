@@ -1,9 +1,3 @@
-import SQLConstructor.*;
-import com.google.gson.Gson;
-import org.junit.Assert;
-import org.junit.Test;
-
-
 public class TestSQLViewAll {
 /**
     @Test

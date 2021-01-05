@@ -1,5 +1,5 @@
 import ReturnObjects.*;
-import SQLConstructor.*;
+import JSONObjects.*;
 import com.google.gson.Gson;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,13 +52,7 @@ public class MyServlet extends HttpServlet{
                 //and prints out the updated patient
                 //carrying out Edit
                 SQLEditClinician query = gson.fromJson(reqBody,SQLEditClinician.class);
-                sqlStr = query.getSQL();
-                System.out.println(sqlStr);
-                s.executeUpdate(sqlStr);
-                //Returning updated patient
-                SQLViewClinician viewClinician = new SQLViewClinician(query.getPatientID());
-                sqlStr = viewClinician.getSQL();
-                rset=s.executeQuery(sqlStr);
+                rset=query.execute(s);
             }
             else if (initquery.get_type().equals("EditEngineer")) {
                 //Edits the filter type for a particular patient

@@ -1,11 +1,14 @@
-package SQLConstructor;
+package JSONObjects;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Time;
 
 /**
  * physicians can update the prescription whereas clinicians can't
  */
 
-public class SQLEditPhysician extends SQLEditClinician {
+public class SQLEditPhysician extends SQLEditClinician implements Gettable, Executeable {
     //additional field
     private String prescription;
 
@@ -25,6 +28,21 @@ public class SQLEditPhysician extends SQLEditClinician {
                 potassium_input + ", sodium_manual = " + sodium_input + ", lactate_manual = " + lactate_input + " prescription = \'" +
                 prescription + "\', comments = \'" + comment + "\' WHERE time = \'" + time + "\' AND patient_id = " + patientID + ";";
         return sqlStr;
+    }
+
+    @Override
+    public ResultSet execute(Statement s) throws SQLException {
+        //carrying out Edit
+        System.out.println("The SQL Query Is " + sqlStr);
+        try {
+            s.executeUpdate(sqlStr);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        //Returning updated patient
+        SQLViewClinician viewClinician = new SQLViewClinician(patientID);
+        ResultSet rset=s.executeQuery(viewClinician.getSQL());
+        return rset;
     }
 
     public String getPrescription() {

@@ -1,6 +1,4 @@
-package SQLConstructor;
-
-import java.sql.Time;
+package JSONObjects;
 
 /**
  * This Class Creates a SQLQuery which returns all information
