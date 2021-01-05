@@ -36,4 +36,5 @@ public class TestSQLEdit {
                 "sodium_manual = 7.0, lactate_manual = 7.0 prescription = 'this is the prescription', comments = 'test comment' " +
                 "WHERE time = '08:00:08' AND patient_id = 2342;");
     }
+
 }

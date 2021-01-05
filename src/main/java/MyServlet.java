@@ -63,13 +63,7 @@ public class MyServlet extends HttpServlet{
                 //and prints out the updated patient
                 //updating
                 SQLEditPhysician query = gson.fromJson(reqBody, SQLEditPhysician.class);
-                sqlStr = query.getSQL();
-                System.out.println(sqlStr);
-                s.executeUpdate(sqlStr);
-                //printing updated patient
-                SQLViewClinician viewClinician = new SQLViewClinician(query.getPatientID());
-                sqlStr = viewClinician.getSQL();
-                rset=s.executeQuery(sqlStr);
+                rset=query.execute(s);
             }
 
             else System.out.println("Type is " + initquery.get_type() + " AND Request Did Not Work");

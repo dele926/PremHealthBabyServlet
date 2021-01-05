@@ -47,8 +47,8 @@ public class SQLEditClinician extends SQLEdit implements Executeable, Getable {
             throwables.printStackTrace();
         }
         //Returning updated patient
-        SQLViewClinician viewClinician = new SQLViewClinician(patientID);
-        ResultSet rset=s.executeQuery(viewClinician.getSQL());
+        SQLViewAll viewAll = new SQLViewAll(patientID);
+        ResultSet rset=s.executeQuery(viewAll.getSQL());
         return rset;
     }
 
