@@ -59,7 +59,6 @@ public class MyServlet extends HttpServlet{
                 SQLViewClinician viewClinician = new SQLViewClinician(query.getPatientID());
                 sqlStr = viewClinician.getSQL();
                 rset=s.executeQuery(sqlStr);
-                System.out.println(rset);
             }
             else if (initquery.get_type().equals("EditEngineer")) {
                 //Edits the filter type for a particular patient
@@ -89,12 +88,13 @@ public class MyServlet extends HttpServlet{
                 rset=s.executeQuery(sqlStr);
             }
 
-            else System.out.println("Type is " + initquery.get_type() + " BUT Request Did Not Work");
+            else System.out.println("Type is " + initquery.get_type() + " AND Request Did Not Work");
             //All returned info for doPost is of the returnObject "Patient" class
             Patient patient = new Patient (rset);
             Map<String, Object> results = new HashMap<>();
             results = patient.resultSetToList(rset);
             String jsonString = gson.toJson(results); // RETURN THIS
+            System.out.println(jsonString);
             resp.getWriter().write(jsonString);
             //rset.close();
             s.close();
