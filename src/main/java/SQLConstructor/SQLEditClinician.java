@@ -2,7 +2,7 @@ package SQLConstructor;
 
 import java.sql.Time;
 
-public class SQLEditClinician extends SQLEdit {
+public class SQLEditClinician extends SQLEdit implements Getable {
     protected String comment;
     protected double glucose_input;
     protected double lactate_input;
