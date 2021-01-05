@@ -1,5 +1,7 @@
 package SQLConstructor;
 
-public interface Getable {
+public interface Gettable {
+    //edited
     String getSQL();
+
 }

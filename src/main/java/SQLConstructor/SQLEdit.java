@@ -7,6 +7,7 @@ import java.sql.Time;
  * for a given clientID
  */
 public abstract class SQLEdit extends SQLQuery {
+    //edited
     //fields
     protected int patientID;
 
