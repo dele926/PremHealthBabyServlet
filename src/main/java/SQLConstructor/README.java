@@ -1,4 +1,4 @@
-package JSONObjects;
+package SQLConstructor;
 
 /**
  This Document explains the Design Process behind the class structure of the SQLConstructor

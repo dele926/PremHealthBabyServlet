@@ -1,4 +1,4 @@
-package JSONObjects;
+package SQLConstructor;
 
 public class SQLViewEngineer extends SQLQuery {
 

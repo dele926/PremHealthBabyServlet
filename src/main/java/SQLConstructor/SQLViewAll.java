@@ -1,4 +1,4 @@
-package JSONObjects;
+package SQLConstructor;
 
 public class SQLViewAll extends SQLQuery {
         //fields

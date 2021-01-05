@@ -1,5 +1,5 @@
 import ReturnObjects.*;
-import JSONObjects.*;
+import SQLConstructor.*;
 import com.google.gson.Gson;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -59,27 +59,14 @@ public class MyServlet extends HttpServlet{
                 //then returns the updated patient
                 //Updating
                 SQLEditEngineer query = gson.fromJson(reqBody, SQLEditEngineer.class);
-                sqlStr = query.getSQL();
-                System.out.println("The Request is " + sqlStr);
-                s.executeUpdate(sqlStr);
-                //Returning all information for one clinician
-                SQLViewAll viewAll = new SQLViewAll(query.getPatientID());
-                sqlStr = viewAll.getSQL();
-                System.out.println(sqlStr);
-                rset=s.executeQuery(sqlStr);
+                rset=query.execute(s);
             }
             else if (initquery.get_type().equals("EditPhysician")) {
                 //EditClinician returns an object that says "Prescription Added!"
                 //and prints out the updated patient
                 //updating
                 SQLEditPhysician query = gson.fromJson(reqBody, SQLEditPhysician.class);
-                sqlStr = query.getSQL();
-                System.out.println(sqlStr);
-                s.executeUpdate(sqlStr);
-                //printing updated patient
-                SQLViewClinician viewClinician = new SQLViewClinician(query.getPatientID());
-                sqlStr = viewClinician.getSQL();
-                rset=s.executeQuery(sqlStr);
+                rset=query.execute(s);
             }
 
             else System.out.println("Type is " + initquery.get_type() + " AND Request Did Not Work");

@@ -1,4 +1,4 @@
-package JSONObjects;
+package SQLConstructor;
 
 /**
  * This Class Creates a SQLQuery which returns all information
