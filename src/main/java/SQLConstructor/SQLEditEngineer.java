@@ -10,8 +10,8 @@ import java.sql.Statement;
 
 public class SQLEditEngineer extends SQLEdit implements Gettable, Executeable{
     //extra fields
-    String newFilter;
-    String sqlStr = "";
+    protected String newFilter;
+    protected String sqlStr = "";
 
     //constructor
     public SQLEditEngineer (int patientID, String newFilter){
@@ -43,6 +43,8 @@ public class SQLEditEngineer extends SQLEdit implements Gettable, Executeable{
         return rset;
     }
 
+
+    //access Methods
     public String getFilter() {
         return newFilter;
     }

@@ -10,7 +10,7 @@ import java.sql.Time;
 
 public class SQLEditPhysician extends SQLEditClinician implements Gettable, Executeable {
     //additional field
-    private String prescription;
+    protected String prescription;
 
     //constructor
     public SQLEditPhysician(int patientID, String comment, double glucose_input,
@@ -46,6 +46,7 @@ public class SQLEditPhysician extends SQLEditClinician implements Gettable, Exec
         return rset;
     }
 
+    //access methods
     public String getPrescription() {
         return prescription;
     }

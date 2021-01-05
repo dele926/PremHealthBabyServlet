@@ -14,7 +14,7 @@ deploy:
   provider: heroku
   api_key: 0732c0b2-dd50-4c92-9737-36dbef731950
   app: premhealthbabyservlet
-  on:
-    all_branches: true
-    branch: set_class
+on:
+  all_branches: true
+
 

@@ -53,5 +53,8 @@ public class SQLEditClinician extends SQLEdit implements Executeable, Gettable{
     }
 
     //Access Methods
-
+    
+    public String getComment() {
+        return comment;
+    }
 }
