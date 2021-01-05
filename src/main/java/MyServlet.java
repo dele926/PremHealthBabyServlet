@@ -157,7 +157,7 @@ public class MyServlet extends HttpServlet{
             }
 
             Group group = new Group (rset);
-            List results = new ArrayList();
+            Map<String, Object> results = new HashMap<>();
             results = group.resultSetToList(rset);
             String jsonString = gson.toJson(results); // RETURN THIS
             resp.getWriter().write(jsonString);
