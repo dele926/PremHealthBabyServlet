@@ -13,7 +13,7 @@ public class SQLViewClinician extends SQLQuery {
     public String getSQL(){
         String sqlStr;
         sqlStr = "SELECT patient_id, date, time, potassium, sodium, lactate, " +
-                "glucose, sodium_input, lactate_input, glucose_input, " +
+                "glucose, potassium_input, sodium_input, lactate_input, glucose_input, " +
                 "event_type, comments, prescription" + " FROM " + "patients WHERE patient_id = "+ patientID + ";";
         return sqlStr;
     }

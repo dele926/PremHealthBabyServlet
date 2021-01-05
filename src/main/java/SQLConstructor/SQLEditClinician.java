@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 
-public class SQLEditClinician extends SQLEdit implements Executeable, Gettable{
+public class SQLEditClinician extends SQLEdit implements Executeable, Getable {
     protected String comment;
     protected double glucose_input;
     protected double lactate_input;

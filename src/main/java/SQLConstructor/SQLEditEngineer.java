@@ -8,7 +8,7 @@ import java.sql.Statement;
  * The Engineer can update the filter method for one particular patient
  */
 
-public class SQLEditEngineer extends SQLEdit implements Gettable, Executeable{
+public class SQLEditEngineer extends SQLEdit implements Getable, Executeable{
     //extra fields
     protected String newFilter;
     protected String sqlStr = "";
