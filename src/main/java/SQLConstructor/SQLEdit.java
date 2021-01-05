@@ -1,7 +1,5 @@
 package SQLConstructor;
 
-import java.sql.Time;
-
 /**
  * This Class Creates a SQLQuery which returns all information
  * for a given clientID
