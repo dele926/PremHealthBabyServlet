@@ -33,6 +33,7 @@ public class SQLEditPhysician extends SQLEditClinician implements Gettable, Exec
     @Override
     public ResultSet execute(Statement s) throws SQLException {
         //carrying out Edit
+        getSQL();
         System.out.println("The SQL Query Is " + sqlStr);
         try {
             s.executeUpdate(sqlStr);

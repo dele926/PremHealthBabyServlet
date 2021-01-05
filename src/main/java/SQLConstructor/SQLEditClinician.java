@@ -39,6 +39,7 @@ public class SQLEditClinician extends SQLEdit implements Executeable, Gettable{
     @Override
     public ResultSet execute(Statement s) throws SQLException {
         //carrying out Edit
+        getSQL();
         System.out.println("The SQL Query Is " + sqlStr);
         try {
             s.executeUpdate(sqlStr);

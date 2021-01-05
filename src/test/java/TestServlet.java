@@ -9,27 +9,27 @@ import java.io.IOException;
 import java.io.StringWriter;
 
 /**
-public class TestServlet {
-    @Mock
-    HttpServletRequest request;
-    @Mock
-    HttpServletResponse response;
-    @Before
-    public void setUp() throws Exception{
-        MockitoAnnotations.initMocks(this);
-    }
-    @Test
-    public void testDoGet() throws IOException, ServletException {
-        StringWriter stringWriter = new StringWriter();
+ * public class TestServlet {
+ *     @Mock
+ *     HttpServletRequest request;
+ *     @Mock
+ *     HttpServletResponse response;
+ *     @Before
+ *     public void setUp() throws Exception{
+ *         MockitoAnnotations.initMocks(this);
+ *     }
+ *     @Test
+ *     public void testDoGet() throws IOException, ServletException {
+ *         StringWriter stringWriter = new StringWriter();
+ *
+ *
+ *         String output=stringWriter.getBuffer().toString();
+ *         Assert.assertThat(output,is(equalTo("OK")));
+ *
+ *         //when and thenReturn sets value to return when method specified is called
+ *
+ *     }
+ *
+ * }
+ */
 
-
-        String output=stringWriter.getBuffer().toString();
-        Assert.assertThat(output,is(equalTo("OK")));
-
-        //when and thenReturn sets value to return when method specified is called
-
-    }
-
-}
-
-*/

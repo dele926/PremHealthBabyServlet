@@ -48,9 +48,6 @@ public class MyServlet extends HttpServlet{
             String sqlStr = "Invalid Command";
             ResultSet rset = null;
             if (initquery.get_type().equals("EditClinician")) {
-                //EditClinician returns an object that says "Comment Added!"
-                //and prints out the updated patient
-                //carrying out Edit
                 SQLEditClinician query = gson.fromJson(reqBody,SQLEditClinician.class);
                 rset=query.execute(s);
             }

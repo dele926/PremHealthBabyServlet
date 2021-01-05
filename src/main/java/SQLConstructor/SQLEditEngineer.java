@@ -30,6 +30,7 @@ public class SQLEditEngineer extends SQLEdit implements Gettable, Executeable{
     @Override
     public ResultSet execute(Statement s) throws SQLException {
         //carrying out Edit
+        getSQL();
         System.out.println("The SQL Query Is " + sqlStr);
         try {
             s.executeUpdate(sqlStr);
