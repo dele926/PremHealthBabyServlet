@@ -91,9 +91,18 @@ public class MyServlet extends HttpServlet{
             else System.out.println("Type is " + initquery.get_type() + " AND Request Did Not Work");
             //All returned info for doPost is of the returnObject "Patient" class
             Patient patient = new Patient (rset);
+            String jsonString = gson.toJson(patient); // RETURN THIS
+            /**
+             * Servlet
+            String jsonString = gson.toJson(patient);
+             **/
+
+            /**
+             * Client
+            Patient patient = gson.fromJson(reqBody, Patient.class);
             Map<String, Object> results = new HashMap<>();
             results = patient.resultSetToList(rset);
-            String jsonString = gson.toJson(results); // RETURN THIS
+             **/
             System.out.println(jsonString);
             resp.getWriter().write(jsonString);
             //rset.close();
