@@ -23,6 +23,7 @@ public class MyServlet extends HttpServlet{
             IOException {
         //Setup
         String reqBody=req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        System.out.println(reqBody);
         resp.setContentType("application/json");
         resp.getWriter().write(reqBody);
         String dbUrl = "jdbc:postgresql://ec2-34-194-198-238.compute-1.amazonaws.com:5432/d5o0sajebkt8h3";
@@ -47,7 +48,12 @@ public class MyServlet extends HttpServlet{
             SQLQuery initquery = gson.fromJson(reqBody, SQLQuery.class);
             String sqlStr = "Invalid Command";
             ResultSet rset = null;
-            if (initquery.get_type().equals("EditClinician")) {
+            if (initquery.get_type().equals("EditOne")) {
+                System.out.println("Initial Query Is: " + initquery);
+                SQLEditOne query = gson.fromJson(reqBody,SQLEditOne.class);
+                rset=query.execute(s);
+            }
+            else if (initquery.get_type().equals("EditClinician")) {
                 SQLEditClinician query = gson.fromJson(reqBody,SQLEditClinician.class);
                 rset=query.execute(s);
             }
@@ -134,7 +140,6 @@ public class MyServlet extends HttpServlet{
                     throwables.printStackTrace();
                 }
             }
-
             Group group = new Group (rset);
             Map<String, Object> results = new HashMap<>();
             results = group.resultSetToList(rset);
