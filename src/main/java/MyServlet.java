@@ -8,9 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -90,7 +88,7 @@ public class MyServlet extends HttpServlet{
         String reqBody=req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         resp.setContentType("application/json");
         resp.getWriter().write(reqBody);
-        String dbUrl = System.getenv("JDBC_DATABASE_URL");
+        String dbUrl = "jdbc:postgresql://ec2-34-194-198-238.compute-1.amazonaws.com:5432/d5o0sajebkt8h3";
         try {
             // Registers the driver
             Class.forName("org.postgresql.Driver");
@@ -98,7 +96,7 @@ public class MyServlet extends HttpServlet{
         }
         Connection conn = null;
         try {
-            conn= DriverManager.getConnection(dbUrl);
+            conn= DriverManager.getConnection(dbUrl, "sycqsrtspaehfa", "dc02d39d3fcb5602eb6c4cef062954511ebc2641c7d85ca4a1b8b88fe563f116");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -110,29 +108,17 @@ public class MyServlet extends HttpServlet{
             //Takes in Initial Query in the superclass InitQuery. This is used to identify
             //which type of command the client is sending to us
             SQLQuery initquery = gson.fromJson(reqBody, SQLQuery.class);
-            String sqlStr = "Invalid Command";
             ResultSet rset = null;
-
-            if (initquery.get_type().equals("ViewClinician"))
+            if (initquery.get_type().equals("ViewPatient"))
             {
-                SQLViewClinician query = gson.fromJson(reqBody,SQLViewClinician.class);
-                sqlStr = query.getSQL();
-                try {
-                    rset=s.executeQuery(sqlStr);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                SQLViewPatient query = gson.fromJson(reqBody,SQLViewPatient.class);
+                rset=query.execute(s);
             }
 
-            else if (initquery.get_type().equals("ViewEngineer"))
+            else if (initquery.get_type().equals("ViewAll"))
             {
-                SQLViewEngineer query = gson.fromJson(reqBody,SQLViewEngineer.class);
-                sqlStr = query.getSQL();
-                try {
-                    rset=s.executeQuery(sqlStr);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                SQLViewAll query = gson.fromJson(reqBody, SQLViewAll.class);
+                rset=query.execute(s);
             }
             Group group = new Group (rset);
             Map<String, Object> results = new HashMap<>();

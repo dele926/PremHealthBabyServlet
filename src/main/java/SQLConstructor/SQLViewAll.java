@@ -1,23 +1,17 @@
 package SQLConstructor;
 
-public class SQLViewAll extends SQLQuery {
-        //fields
-        int patientID;
+import javax.xml.transform.Result;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-        public SQLViewAll(int patientID){
-            super();
-            this.patientID = patientID;
-            _type = "ViewAll";
-        }
+public class SQLViewAll extends SQLView implements Executeable{
 
-        @Override
-        public String getSQL(){
-            String sqlStr;
-            sqlStr = "SELECT *" + " FROM " + "patients WHERE patient_id = "+ patientID + ";";
-            return sqlStr;
-        }
-        public int getPatientID(){
-            return patientID;
-        }
+    public SQLViewAll(){
+        super();
+        _type = "ViewAll";
+        sqlStr = "SELECT time, patient_id, sodium, potassium, lactate, glucose, potassium_input, sodium_input, " +
+                "lactate_input, glucose_input FROM patients WHERE NOT potassium_input is NULL";
+    }
 
 }
