@@ -58,16 +58,10 @@ public class MyServlet extends HttpServlet{
                 rset=query.execute(s);
             }
             else if (initquery.get_type().equals("EditEngineer")) {
-                //Edits the filter type for a particular patient
-                //then returns the updated patient
-                //Updating
                 SQLEditEngineer query = gson.fromJson(reqBody, SQLEditEngineer.class);
                 rset=query.execute(s);
             }
             else if (initquery.get_type().equals("EditPhysician")) {
-                //EditClinician returns an object that says "Prescription Added!"
-                //and prints out the updated patient
-                //updating
                 SQLEditPhysician query = gson.fromJson(reqBody, SQLEditPhysician.class);
                 rset=query.execute(s);
             }
