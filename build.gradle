@@ -25,6 +25,8 @@ build.mustRunAfter clean
 
 
 dependencies {
+    implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
+
     //include servlet libraries
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     testCompile group: 'junit', name: 'junit', version: '4.12'

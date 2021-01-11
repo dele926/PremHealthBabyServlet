@@ -13,8 +13,7 @@ public class Patient {
     }
 
     public Map<String, Object>  resultSetToList(ResultSet rs) throws SQLException{
-        ResultSetMetaData md = rs.getMetaData();
-        int columns = md.getColumnCount();
+        ArrayList<String> patientID = new ArrayList<String>();
         ArrayList<String> date = new ArrayList<String>();
         ArrayList<String> time = new ArrayList<String>();
         ArrayList<String> potassium = new ArrayList<String>();
@@ -31,6 +30,7 @@ public class Patient {
         ArrayList<String> filter_type = new ArrayList<String>();
 
         while (rs.next()){ // resultset maintains cursor and it initally points before first row
+            patientID.add(rs.getString("patientID"));
             date.add(rs.getString("date"));
             time.add(rs.getString("time"));
             potassium.add(rs.getString("potassium"));
@@ -47,6 +47,7 @@ public class Patient {
             filter_type.add(rs.getString("filter_type"));
         }
         Map<String, Object> info = new HashMap<>();
+        info.put("patient",patientID);
         info.put("date", date);
         info.put("time", time);
         info.put("potassium",potassium);

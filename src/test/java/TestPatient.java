@@ -2,23 +2,57 @@ import ReturnObjects.Patient;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import java.sql.Connection;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
+import java.util.Map;
+import java.util.HashMap;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.InjectMocks;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 public class TestPatient {
+    @Mock
+    ResultSet rset;
 
+    @Test
+    public void testresultSettolist(){
+        try {
+            createList();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        Patient patient = new Patient(rset);
+            Map<String, Object> results = new HashMap<>();
+        try {
+            results = patient.resultSetToList(rset);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        Map.Entry<String,Object> entry = results.entrySet().iterator().next();
+            String key = entry.getKey();
+            String value = entry.getKey();
+
+            assertEquals(key,"patientID");
+            Assert.assertTrue(value.contains("2322"));
+
+
+    }
+
+    private void createList() throws SQLException{
+        Mockito.when(rset.next()).thenReturn(true).thenReturn(false);
+        Mockito.when(rset.getString("patientID"));
+
+    }
 }

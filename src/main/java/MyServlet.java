@@ -59,6 +59,14 @@ public class MyServlet extends HttpServlet{
                 sqlStr = viewClinician.getSQL();
                 rset=s.executeQuery(sqlStr);
                 System.out.println(rset);
+                Patient patient = new Patient (rset);
+                Map<String, Object> results = new HashMap<>();
+                results = patient.resultSetToList(rset);
+                String jsonString = gson.toJson(results); // RETURN THIS
+                resp.getWriter().write(jsonString);
+                //rset.close();
+                s.close();
+                conn.close();
             }
             else if (initquery.get_type().equals("EditEngineer")) {
                 //Edits the filter type for a particular patient
@@ -73,6 +81,14 @@ public class MyServlet extends HttpServlet{
                 sqlStr = viewAll.getSQL();
                 System.out.println(sqlStr);
                 rset=s.executeQuery(sqlStr);
+                Group group = new Group (rset);
+                Map<String, Object> results = new HashMap<>();
+                results = group.resultSetToList(rset);
+                String jsonString = gson.toJson(results); // RETURN THIS
+                resp.getWriter().write(jsonString);
+                //rset.close();
+                s.close();
+                conn.close();
             }
             else if (initquery.get_type().equals("EditPhysician")) {
                 //EditClinician returns an object that says "Prescription Added!"
@@ -86,18 +102,19 @@ public class MyServlet extends HttpServlet{
                 SQLViewClinician viewClinician = new SQLViewClinician(query.getPatientID());
                 sqlStr = viewClinician.getSQL();
                 rset=s.executeQuery(sqlStr);
+                Patient patient = new Patient (rset);
+                Map<String, Object> results = new HashMap<>();
+                results = patient.resultSetToList(rset);
+                String jsonString = gson.toJson(results); // RETURN THIS
+                resp.getWriter().write(jsonString);
+                //rset.close();
+                s.close();
+                conn.close();
             }
 
             else System.out.println("Type is" + initquery.get_type() + " BUT Request Did Not Work");
             //All returned info for doPost is of the returnObject "Patient" class
-            Patient patient = new Patient (rset);
-            Map<String, Object> results = new HashMap<>();
-            results = patient.resultSetToList(rset);
-            String jsonString = gson.toJson(results); // RETURN THIS
-            resp.getWriter().write(jsonString);
-            //rset.close();
-            s.close();
-            conn.close();
+
         }
         catch (Exception e){
             System.out.println(e);
@@ -156,14 +173,7 @@ public class MyServlet extends HttpServlet{
                 }
             }
 
-            Group group = new Group (rset);
-            Map<String, Object> results = new HashMap<>();
-            results = group.resultSetToList(rset);
-            String jsonString = gson.toJson(results); // RETURN THIS
-            resp.getWriter().write(jsonString);
-            //rset.close();
-            s.close();
-            conn.close();
+
         }
         catch (Exception e){
             System.out.println(e);
