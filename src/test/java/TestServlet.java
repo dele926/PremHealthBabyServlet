@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
  * This code tests if the correct response is outputted
  * when the request is sent
 
-
 public class TestServlet {
     @Mock
     HttpServletRequest request;
@@ -46,8 +45,6 @@ public class TestServlet {
         String output=stringWriter.getBuffer().toString();
         Assert.assertEquals(output,"{\"date\":[\"2012-01-20\"],\"glucose\":[\"2.607\"],\"potassium\":[\"5.537\"],\"comments\":[\"this is EditOne\"],\"sodium_input\":[null],\"lactate_input\":[null],\"potassium_input\":[null],\"glucose_input\":[null],\"sodium\":[\"143.153\"],\"event_type\":[null],\"prescription\":[null],\"filter_type\":[\"Savitzky–Golay filter \"],\"patient_id\":[\"2342\"],\"time\":[\"00:00:00\"],\"lactate\":[\"0.589\"]}");
     }
-
-
 }
 
- **/
+ */
