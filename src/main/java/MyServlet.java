@@ -160,6 +160,14 @@ public class MyServlet extends HttpServlet{
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
+                Patient patient = new Patient (rset);
+                Map<String, Object> results = new HashMap<>();
+                results = patient.resultSetToList(rset);
+                String jsonString = gson.toJson(results); // RETURN THIS
+                resp.getWriter().write(jsonString);
+                //rset.close();
+                s.close();
+                conn.close();
             }
 
             else if (initquery.get_type().equals("ViewEngineer"))
@@ -171,6 +179,14 @@ public class MyServlet extends HttpServlet{
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
+                Group group = new Group (rset);
+                Map<String, Object> results = new HashMap<>();
+                results = group.resultSetToList(rset);
+                String jsonString = gson.toJson(results); // RETURN THIS
+                resp.getWriter().write(jsonString);
+                //rset.close();
+                s.close();
+                conn.close();
             }
 
 
