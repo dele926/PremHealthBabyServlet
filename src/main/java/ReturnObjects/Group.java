@@ -33,7 +33,7 @@ public class Group {
         ArrayList<String> filter_type = new ArrayList<String>();
 
         while (rs.next()) { // resultset maintains cursor and it initally points before first row
-            if (rs.getObject("potassium_manual") != "null") {
+            if (rs.getObject("potassium_input") != "null") {
                 patientID.add(rs.getString("patientID"));
                 date.add(rs.getString("date"));
                 time.add(rs.getString("time"));
