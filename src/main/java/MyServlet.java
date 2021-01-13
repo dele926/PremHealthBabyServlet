@@ -46,29 +46,41 @@ public class MyServlet extends HttpServlet{
             SQLQuery initquery = gson.fromJson(reqBody, SQLQuery.class);
             String sqlStr = "Invalid Command";
             ResultSet rset = null;
-            if (initquery.get_type().equals("EditOne")) {
-                System.out.println("Initial Query Is: " + initquery);
-                SQLEditOne query = gson.fromJson(reqBody,SQLEditOne.class);
-                rset=query.execute(s);
-            }
-            else if (initquery.get_type().equals("EditClinician")) {
+            Map<String, Object> results = new HashMap<>();
+            if (initquery.get_type().equals("EditClinician")) {
                 SQLEditClinician query = gson.fromJson(reqBody,SQLEditClinician.class);
                 rset=query.execute(s);
+                Patient patient = new Patient (rset);
+                results = patient.resultSetToList(rset);
             }
             else if (initquery.get_type().equals("EditEngineer")) {
                 SQLEditEngineer query = gson.fromJson(reqBody, SQLEditEngineer.class);
                 rset=query.execute(s);
+                Patient patient = new Patient (rset);
+                results = patient.resultSetToList(rset);
             }
             else if (initquery.get_type().equals("EditPhysician")) {
                 SQLEditPhysician query = gson.fromJson(reqBody, SQLEditPhysician.class);
                 rset=query.execute(s);
+                Patient patient = new Patient (rset);
+                results = patient.resultSetToList(rset);
             }
-
+            else if (initquery.get_type().equals("ViewPatient"))
+            {
+                SQLViewPatient query = gson.fromJson(reqBody,SQLViewPatient.class);
+                rset=query.execute(s);
+                Patient patient = new Patient (rset);
+                results = patient.resultSetToList(rset);
+            }
+            else if (initquery.get_type().equals("ViewAll"))
+            {
+                SQLViewAll query = gson.fromJson(reqBody, SQLViewAll.class);
+                rset=query.execute(s);
+                Group group = new Group (rset);
+                results = group.resultSetToList(rset);
+            }
             else System.out.println("Type is " + initquery.get_type() + " AND Request Did Not Work");
             //All returned info for doPost is of the returnObject "Patient" class
-            Patient patient = new Patient (rset);
-            Map<String, Object> results = new HashMap<>();
-            results = patient.resultSetToList(rset);
             String jsonString = gson.toJson(results); // RETURN THIS
             System.out.println(jsonString);
             resp.getWriter().write(jsonString);
@@ -110,17 +122,13 @@ public class MyServlet extends HttpServlet{
             SQLQuery initquery = gson.fromJson(reqBody, SQLQuery.class);
             ResultSet rset = null;
             Map<String, Object> results = new HashMap<>();
-
             if (initquery.get_type().equals("ViewPatient"))
             {
                 SQLViewPatient query = gson.fromJson(reqBody,SQLViewPatient.class);
                 rset=query.execute(s);
                 Patient patient = new Patient (rset);
                 results = patient.resultSetToList(rset);
-
-
             }
-
             else if (initquery.get_type().equals("ViewAll"))
             {
                 SQLViewAll query = gson.fromJson(reqBody, SQLViewAll.class);
@@ -128,7 +136,6 @@ public class MyServlet extends HttpServlet{
                 Group group = new Group (rset);
                 results = group.resultSetToList(rset);
             }
-
             String jsonString = gson.toJson(results); // RETURN THIS
             resp.getWriter().write(jsonString);
             //rset.close();
