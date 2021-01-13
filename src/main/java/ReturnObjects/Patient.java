@@ -14,7 +14,6 @@ public class Patient {
 
     public Map<String, Object>  resultSetToList(ResultSet rs) throws SQLException{
         ResultSetMetaData md = rs.getMetaData();
-        int columns = md.getColumnCount();
         ArrayList<String> patient_id = new ArrayList<String>();
         ArrayList<String> date = new ArrayList<String>();
         ArrayList<String> time = new ArrayList<String>();

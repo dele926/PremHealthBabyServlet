@@ -16,8 +16,7 @@ public class Group {
     }
 
     public Map<String, Object> resultSetToList(ResultSet rs) throws SQLException {
-        ResultSetMetaData md = rs.getMetaData();
-        int columns = md.getColumnCount();
+        ArrayList<String> patientID = new ArrayList<String>();
         ArrayList<String> date = new ArrayList<String>();
         ArrayList<String> time = new ArrayList<String>();
         ArrayList<String> potassium = new ArrayList<String>();
@@ -35,6 +34,7 @@ public class Group {
 
         while (rs.next()) { // resultset maintains cursor and it initally points before first row
             if (rs.getObject("potassium_manual") != "null") {
+                patientID.add(rs.getString("patientID"));
                 date.add(rs.getString("date"));
                 time.add(rs.getString("time"));
                 potassium.add(rs.getString("potassium"));
@@ -53,6 +53,7 @@ public class Group {
         }
 
         Map<String, Object> info = new HashMap<>();
+        info.put("patientID",patientID);
         info.put("date", date);
         info.put("time", time);
         info.put("potassium", potassium);

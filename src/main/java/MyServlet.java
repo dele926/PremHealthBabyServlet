@@ -109,20 +109,26 @@ public class MyServlet extends HttpServlet{
             //which type of command the client is sending to us
             SQLQuery initquery = gson.fromJson(reqBody, SQLQuery.class);
             ResultSet rset = null;
+            Map<String, Object> results = new HashMap<>();
+
             if (initquery.get_type().equals("ViewPatient"))
             {
                 SQLViewPatient query = gson.fromJson(reqBody,SQLViewPatient.class);
                 rset=query.execute(s);
+                Patient patient = new Patient (rset);
+                results = patient.resultSetToList(rset);
+
+
             }
 
             else if (initquery.get_type().equals("ViewAll"))
             {
                 SQLViewAll query = gson.fromJson(reqBody, SQLViewAll.class);
                 rset=query.execute(s);
+                Group group = new Group (rset);
+                results = group.resultSetToList(rset);
             }
-            Group group = new Group (rset);
-            Map<String, Object> results = new HashMap<>();
-            results = group.resultSetToList(rset);
+
             String jsonString = gson.toJson(results); // RETURN THIS
             resp.getWriter().write(jsonString);
             //rset.close();
