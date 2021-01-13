@@ -9,8 +9,7 @@ public class TestSQLView {
     @Test
     public void testViewALL(){
         SQLViewAll query = new SQLViewAll();
-        Assert.assertEquals("SELECT time, patient_id, sodium, potassium, lactate, glucose, potassium_input, sodium_input, " +
-               "lactate_input, glucose_input FROM patients WHERE NOT potassium_input is NULL", query.getSQL());
+        Assert.assertEquals("SELECT * FROM patients WHERE NOT potassium_input is NULL", query.getSQL());
         Assert.assertEquals("ViewAll", query.get_type());
     }
 
