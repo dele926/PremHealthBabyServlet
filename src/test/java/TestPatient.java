@@ -1,12 +1,6 @@
 import ReturnObjects.Patient;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
