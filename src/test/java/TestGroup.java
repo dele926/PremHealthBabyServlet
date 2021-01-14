@@ -1,3 +1,4 @@
+import ReturnObjects.Group;
 import ReturnObjects.Patient;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
@@ -21,7 +22,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-public class TestPatient {
+public class TestGroup {
     @Mock
     ResultSet rset;
 
@@ -32,19 +33,19 @@ public class TestPatient {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        Patient patient = new Patient(rset);
-            Map<String, Object> results = new HashMap<>();
+        Group group = new Group (rset);
+        Map<String, Object> results = new HashMap<>();
         try {
-            results = patient.resultSetToList(rset);
+            results = group.resultSetToList(rset);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         Map.Entry<String,Object> entry = results.entrySet().iterator().next();
-            String key = entry.getKey();
-            String value = entry.getKey();
+        String key = entry.getKey();
+        String value = entry.getKey();
 
-            assertEquals(key,"patientID");
-            Assert.assertTrue(value.contains("2322"));
+        assertEquals(key,"patientID");
+        Assert.assertTrue(value.contains("2322"));
 
 
     }
