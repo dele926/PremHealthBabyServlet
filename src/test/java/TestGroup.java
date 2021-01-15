@@ -15,6 +15,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+/**
+ * The TestGroup ensures that the first column of the map object returned contains patientID and to ensure that the list
+ * that comes with the patientID contains a patientID 2322
+ */
+
 public class TestGroup {
     @Mock
     ResultSet rset;
