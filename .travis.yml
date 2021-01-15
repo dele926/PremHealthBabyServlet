@@ -16,5 +16,3 @@ deploy:
   app: premhealthbabyservlet
   on:
     all_branches: true
-    branch: set_class
-
