@@ -14,6 +14,9 @@ import java.util.Map;
 public class Group {
     public Group(ResultSet rset) {
     }
+    /** resultSettoList
+    This method takes the resultset returned from the SQL query and puts each column into a different ArrayList
+    */
 
     public Map<String, Object> resultSetToList(ResultSet rs) throws SQLException {
         ArrayList<String> patient_id = new ArrayList<String>();
@@ -34,6 +37,7 @@ public class Group {
 
         while (rs.next()) { // resultset maintains cursor and it initally points before first row
             if (rs.getObject("potassium_input") != "null") {
+                // checks if the manual input column is empty, if its not store it in the arraylist
                 patient_id.add(rs.getString("patient_id"));
                 date.add(rs.getString("date"));
                 time.add(rs.getString("time"));
@@ -52,7 +56,7 @@ public class Group {
             }
         }
 
-        Map<String, Object> info = new HashMap<>();
+        Map<String, Object> info = new HashMap<>(); // return everything in a hashmap
         info.put("patient_id",patient_id);
         info.put("date", date);
         info.put("time", time);

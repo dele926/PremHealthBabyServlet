@@ -5,15 +5,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
-import java.util.List;
+/**
+ * The Patient Object creates the javascript object to be converted to JSON String
+ * It returns the info obtained for a specified patient
+ */
 
 public class Patient {
     public Patient(ResultSet rset) {
     }
 
     public Map<String, Object>  resultSetToList(ResultSet rs) throws SQLException{
-        ResultSetMetaData md = rs.getMetaData();
+        // instanitate an array list to store each column
         ArrayList<String> patient_id = new ArrayList<String>();
         ArrayList<String> date = new ArrayList<String>();
         ArrayList<String> time = new ArrayList<String>();
@@ -48,6 +50,7 @@ public class Patient {
             filter_type.add(rs.getString("filter_type"));
         }
         Map<String, Object> info = new HashMap<>();
+        // returns everything in a hashmap
         info.put("patient_id", patient_id);
         info.put("date", date);
         info.put("time", time);

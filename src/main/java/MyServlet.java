@@ -57,6 +57,7 @@ public class MyServlet extends HttpServlet{
                 SQLEditClinician query = gson.fromJson(reqBody,SQLEditClinician.class);
                 rset=query.execute(s);
                 Patient patient = new Patient (rset);
+                //create new patient object where the info from the sql query will be stored to be returned to android client
                 results = patient.resultSetToList(rset);
             }
             else if (initquery.get_type().equals("EditEngineer")) {
