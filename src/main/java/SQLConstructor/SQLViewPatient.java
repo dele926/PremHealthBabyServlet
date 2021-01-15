@@ -4,6 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Returns all information for a single patient
+ */
+
 public class SQLViewPatient extends SQLView implements Executeable{
         //fields
         int patientID;

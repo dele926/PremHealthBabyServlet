@@ -5,6 +5,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 
+/**
+ * Used by clinicians to add comments and manually measured metabolite inputs
+ */
+
 public class SQLEditClinician extends SQLEdit implements Executeable{
     protected String comment;
     protected double glucose_input;

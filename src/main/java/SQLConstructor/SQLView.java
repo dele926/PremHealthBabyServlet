@@ -4,6 +4,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Superclass of all View queries. Implements execute
+ * The execute differs to that of the "Edit" classes as we are using
+ * .executeQuery as opposed to .executeUpdate
+ */
+
 public abstract class SQLView extends SQLQuery implements Executeable{
 
     public SQLView(){
@@ -20,6 +26,7 @@ public abstract class SQLView extends SQLQuery implements Executeable{
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        System.out.println("Successfully Executed!");
         return rset;
     }
 

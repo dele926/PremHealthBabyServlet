@@ -1,5 +1,13 @@
 package SQLConstructor;
 
+/**
+ * Superclass for all other Constructors
+ * Two fields: sqlStr and _type are inherited amongst all class
+ * _type is declared in every subclass so that when the SQLQuery is read
+ * by the servlet, the servlet knows which type of object to convert the
+ * JSONString into
+ */
+
 public class SQLQuery {
 
     //fields

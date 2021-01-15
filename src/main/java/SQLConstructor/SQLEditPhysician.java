@@ -5,7 +5,9 @@ import java.sql.Statement;
 import java.sql.Time;
 
 /**
- * physicians can update the prescription whereas clinicians can't
+ * Similar to EditClinician,
+ * Used by physicians to add in "prescription" as well as comments and manually
+ * measured data
  */
 
 public class SQLEditPhysician extends SQLEditClinician implements Executeable {

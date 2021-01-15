@@ -12,7 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-//This declares this program to be a servlet
+/**
+ * Servlet declares a doPost and a doGet Method
+ * doPost primarily handles Edit requests whereas doGet exclusively handles View requests
+ * However, View requests are also executeable by doPost
+ */
+
 @WebServlet(urlPatterns = {"/patients"}, displayName = "Baby Health Servlet", loadOnStartup = 1)
 public class MyServlet extends HttpServlet{
     @Override
@@ -37,14 +42,15 @@ public class MyServlet extends HttpServlet{
             throwables.printStackTrace();
         }
 
-        //Carrying out SQL
+        //SQL Execution
         try {
             Statement s=conn.createStatement();
             Gson gson = new Gson();
-            //Takes in Initial Query in the superclass InitQuery. This is used to identify
-            //which type of command the client is sending to us
+            /*
+            Constructs the superclass object SQLQuery from the request
+            which type of command the client is sending to us
+             */
             SQLQuery initquery = gson.fromJson(reqBody, SQLQuery.class);
-            String sqlStr = "Invalid Command";
             ResultSet rset = null;
             Map<String, Object> results = new HashMap<>();
             if (initquery.get_type().equals("EditClinician")) {
@@ -79,12 +85,12 @@ public class MyServlet extends HttpServlet{
                 Group group = new Group (rset);
                 results = group.resultSetToList(rset);
             }
+            //if the request is not a SQLConstructor class or not any of the classes declared above
+            //the system prints out the _type field (if there is one)
             else System.out.println("Type is " + initquery.get_type() + " AND Request Did Not Work");
-            //All returned info for doPost is of the returnObject "Patient" class
-            String jsonString = gson.toJson(results); // RETURN THIS
-            System.out.println(jsonString);
+            String jsonString = gson.toJson(results);
             resp.getWriter().write(jsonString);
-            //rset.close();
+            rset.close();
             s.close();
             conn.close();
         }
@@ -138,7 +144,7 @@ public class MyServlet extends HttpServlet{
             }
             String jsonString = gson.toJson(results); // RETURN THIS
             resp.getWriter().write(jsonString);
-            //rset.close();
+            rset.close();
             s.close();
             conn.close();
         }

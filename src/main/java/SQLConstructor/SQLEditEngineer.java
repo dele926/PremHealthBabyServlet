@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * The Engineer can update the filter method for one particular patient
+ * Used by engineers to update the filter method for one particular patient
  */
 
 public class SQLEditEngineer extends SQLEdit implements Executeable{

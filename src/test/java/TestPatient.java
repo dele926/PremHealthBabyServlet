@@ -1,14 +1,9 @@
 import ReturnObjects.Patient;
 import static org.junit.Assert.assertEquals;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-
 import java.util.Map;
 import java.util.HashMap;
-
-
 import org.junit.Assert;
 
 import org.junit.jupiter.api.Test;

@@ -5,8 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * This Class Creates a SQLQuery which returns all information
- * for a given clientID
+ * Superclass of all SQLEdit Objects
+ * Implements Executeable by overriding .execute method
  */
 public abstract class SQLEdit extends SQLQuery implements Executeable {
     //edited
@@ -20,16 +20,19 @@ public abstract class SQLEdit extends SQLQuery implements Executeable {
 
     @Override
     public ResultSet execute(Statement s) throws SQLException {
-        //carrying out Edit
+        //For troubleshooting purposes, print SQL Query to server console
         System.out.println("The SQL Query Is " + sqlStr);
         try {
+            //executing UPDATE query
             s.executeUpdate(sqlStr);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        //Returning updated patient
+        //after updating, need to return the new updated patient information
+        //this is done through executing a SQLViewPatient object of the correct ID:
         SQLViewPatient viewPatient = new SQLViewPatient(patientID);
         ResultSet rset=s.executeQuery(viewPatient.getSQL());
+        System.out.println("Successfully Executed!");
         return rset;
     }
 
