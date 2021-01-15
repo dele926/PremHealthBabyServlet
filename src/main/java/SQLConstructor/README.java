@@ -6,8 +6,9 @@ package SQLConstructor;
 
  The SQLConstructor Package is used to construct Client Request Messages.
  Its goal is to organize the request information into a javascript object so that
- it can be sent in a JSON format (using GSON library) across the HTTPServer and be
- successfully unpacked and turned into a SQLQuery that is sent to the Postgresql database.
+ 1) it can be sent in a JSON format (using GSON library) across the HTTPServer
+ 2) be successfully unpacked and turned into a SQLQuery that is sent to the Postgresql database
+ 3) organize retrieved information
 
  Structure of Our Program
  We have several different SQL Queries that we want to perform
